@@ -1,5 +1,5 @@
 const passport = require("passport");
-const Users = require("../models/Users");
+const User = require("../models/User");
 
 // REQUIRE ALL STRATEGIES HERE!!!
 require("./strategies/local");
@@ -9,7 +9,7 @@ passport.serializeUser((user, cb) => {
 });
 
 passport.deserializeUser((id, cb) => {
-  Users.findById(id)
+  User.findById(id)
     .then(user => cb(null, user))
     .catch(e => cb(err));
 });
