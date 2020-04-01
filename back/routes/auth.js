@@ -93,7 +93,7 @@ router.post("/logout", isLoggedIn(), async (req, res, next) => {
 router.post("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
-    const { username, campus, course } = req.body;
+    const { username, name, lastname, email, rol } = req.body;
     await Users.findByIdAndUpdate(id, {
       username,
       name,
