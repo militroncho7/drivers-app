@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 const IMAGE_URL = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg)/g;
 const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/;
+const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,12}$/;
 
 const userSchema = new mongoose.Schema(
   {
@@ -41,7 +41,8 @@ const userSchema = new mongoose.Schema(
     },
     rol: {
       type: String,
-      enum: ["Admin", "User"]
+      enum: ["Admin", "User"],
+      default: "User"
     }
   },
   {

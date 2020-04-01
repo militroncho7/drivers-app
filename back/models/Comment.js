@@ -8,8 +8,19 @@ const commentSchema = new Schema(
     commentMovie: String
   },
   {
-    timestamps: true
-  }
+    timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        delete ret.createdAt;
+        delete ret.updatedAt;
+        delete ret.__v;
+        return ret;
+      },
+    },
+  },
 );
 
 const Comment = mongoose.model("Comment", commentSchema);
