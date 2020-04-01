@@ -10,7 +10,7 @@ const { isLoggedIn, isLoggedOut } = require("../lib/isLoggedMiddleware");
 router.post("/signup", async (req, res, next) => {
   const { username, password, name, lastname, email, rol } = req.body;
 
-  console.log(sername, password, name, lastname, email, rol);
+  //console.log(username, password, name, lastname, email, rol);
 
   // Create the user
   const existingUser = await Users.findOne({ username });
