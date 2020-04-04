@@ -5,10 +5,18 @@ const _ = require("lodash");
 const passport = require("passport");
 const { hashPassword, checkHashed } = require("../lib/hashing");
 const { isLoggedIn, isLoggedOut } = require("../lib/isLoggedMiddleware");
+const uploader = require("../cloudinary/cloudinary.config");
 
 // SIGNUP
 router.post("/signup", async (req, res, next) => {
-  const { username, password, name, lastname, email, rol } = req.body;
+  const {
+    username,
+    password,
+    name,
+    lastname,
+    email,
+    rol
+  } = req.body;
 
   //console.log(username, password, name, lastname, email, rol);
 
@@ -123,6 +131,30 @@ router.post("/whoami", (req, res, next) => {
       ])
     );
   else return res.status(401).json({ status: "No user session present" });
+});
+
+//Image Upload
+router.post("/upload", uploader.single("imageUrl"), async (req, res, next) => {
+  const imageUpload = req.file.secure_url;
+
+  if (!req.file) {
+    next(new Error("There is no file to upload"));
+    return;
+  }
+  if (req.user) {
+    await Users.findByIdAndUpdate(
+      req.user._id,
+      {
+        image: imageUpload
+      },
+      { new: true }
+    );
+  }
+  res.json({
+    secure_url: imageUpload,
+    status: 200,
+    message: "Uploaded image"
+  });
 });
 
 module.exports = router;
