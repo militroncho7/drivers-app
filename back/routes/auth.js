@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Users = require("../models/User");
+const User = require("../models/User");
 const _ = require("lodash");
 const passport = require("passport");
 const { hashPassword, checkHashed } = require("../lib/hashing");
@@ -21,9 +21,9 @@ router.post("/signup", async (req, res, next) => {
   //console.log(username, password, name, lastname, email, rol);
 
   // Create the user
-  const existingUser = await Users.findOne({ username });
+  const existingUser = await User.findOne({ username });
   if (!existingUser) {
-    const newUser = await Users.create({
+    const newUser = await User.create({
       username,
       password: hashPassword(password),
       name,
@@ -102,7 +102,7 @@ router.post("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
     const { username, name, lastname, email, rol } = req.body;
-    await Users.findByIdAndUpdate(id, {
+    await User.findByIdAndUpdate(id, {
       username,
       name,
       lastname,
@@ -142,7 +142,7 @@ router.post("/upload", uploader.single("imageUrl"), async (req, res, next) => {
     return;
   }
   if (req.user) {
-    await Users.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       req.user._id,
       {
         image: imageUpload
