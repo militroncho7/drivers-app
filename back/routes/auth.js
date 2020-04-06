@@ -46,7 +46,7 @@ router.post("/signup", async (req, res, next) => {
         ])
       );
     });
-    console.log(username, "resgitrado");
+    console.log(username, "resgitered");
   } else {
     res.json({ status: "User Exist" });
   }
@@ -57,7 +57,7 @@ router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, failureDetails) => {
     if (err) {
       console.log(err);
-      return res.json({ status: 500, message: "Error de autentificación" });
+      return res.json({ status: 500, message: "Authentication error" });
     }
 
     if (!user) {
