@@ -19,7 +19,7 @@ router.post("/signup", async (req, res, next) => {
   } = req.body;
 
   //console.log(username, password, name, lastname, email, rol);
-
+  console.log(req);
   // Create the user
   const existingUser = await User.findOne({ username });
   if (!existingUser) {
@@ -55,6 +55,7 @@ router.post("/signup", async (req, res, next) => {
 // LOGIN
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, failureDetails) => {
+    console.log("soy un log");
     if (err) {
       console.log(err);
       return res.json({ status: 500, message: "Authentication error" });
