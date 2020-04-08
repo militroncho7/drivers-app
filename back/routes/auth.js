@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const crypto = require("crypto");
 const User = require("../models/User");
 const _ = require("lodash");
 const passport = require("passport");
@@ -25,7 +26,7 @@ router.post("/signup", async (req, res, next) => {
   if (!existingUser) {
     const newUser = await User.create({
       username,
-      password: hashPassword(password),
+      password: crypto.createHash('sha256').update(password).digest('base64'),
       name,
       lastname,
       email,
