@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../models/User");
+const { crudGenerator } = require("./crudModels");
+const _ = require("lodash");
 
-// routes middlewares
-const auth = require('./auth');
-router.use('/auth', auth);
-
-//market
-const market = require('./market');
-router.use('/market', market);
-
-/* GET home page */
+// GET home page
 router.get("/", (req, res, next) => {
   res.json({ status: "Welcome" });
 });
+
+router.use("/auth", require("./auth"));
+
+//Market
+const market = require('./market');
+router.use('/market', market);
 
 module.exports = router;
