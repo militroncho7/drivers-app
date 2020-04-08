@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Password is required'],
-      match: [PASSWORD_PATTERN, 'Invalid password pattern'],
+      // required: [true, 'Password is required'],
+      // match: [PASSWORD_PATTERN, 'Invalid password pattern'],
     },
     name: {
       type: String,
@@ -61,23 +61,23 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-userSchema.pre('save', function (next) {
-  const user = this;
+// userSchema.pre('save', function (next) {
+//   const user = this;
 
-  if (!user.isModified('password')) {
-    return next();
-  }
+//   if (!user.isModified('password')) {
+//     return next();
+//   }
 
-  bcrypt.genSalt(SALT_WORK_FACTOR)
-    .then((salt) => {
-      bcrypt.hash(user.password, salt)
-        .then((hash) => {
-          user.password = hash;
-          next();
-        });
-    })
-    .catch(error => next(error));
-});
+//   bcrypt.genSalt(SALT_WORK_FACTOR)
+//     .then((salt) => {
+//       bcrypt.hash(user.password, salt)
+//         .then((hash) => {
+//           user.password = hash;
+//           next();
+//         });
+//     })
+//     .catch(error => next(error));
+// });
 
 
 const User = mongoose.model('User', userSchema);

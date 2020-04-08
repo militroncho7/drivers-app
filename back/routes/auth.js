@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const crypto = require("crypto");
 const User = require("../models/User");
 const _ = require("lodash");
 const passport = require("passport");
@@ -19,13 +20,13 @@ router.post("/signup", async (req, res, next) => {
   } = req.body;
 
   //console.log(username, password, name, lastname, email, rol);
-
+  console.log(req);
   // Create the user
   const existingUser = await User.findOne({ username });
   if (!existingUser) {
     const newUser = await User.create({
       username,
-      password: hashPassword(password),
+      password: crypto.createHash('sha256').update(password).digest('base64'),
       name,
       lastname,
       email,
@@ -46,7 +47,7 @@ router.post("/signup", async (req, res, next) => {
         ])
       );
     });
-    console.log(username, "resgitrado");
+    console.log(username, "resgitered");
   } else {
     res.json({ status: "User Exist" });
   }
@@ -55,9 +56,10 @@ router.post("/signup", async (req, res, next) => {
 // LOGIN
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, failureDetails) => {
+    console.log("soy un log");
     if (err) {
       console.log(err);
-      return res.json({ status: 500, message: "Error de autentificación" });
+      return res.json({ status: 500, message: "Authentication error" });
     }
 
     if (!user) {
