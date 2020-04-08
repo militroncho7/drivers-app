@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const SALT_WORK_FACTOR = 10;
-const IMAGE_URL = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg)/g;
 const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,12}$/;
 
@@ -38,11 +37,6 @@ const userSchema = new mongoose.Schema(
       unique: false,
       default: null,
       lowercase: true
-    },
-    rol: {
-      type: String,
-      enum: ["Admin", "User"],
-      default: "User"
     }
   },
   {
@@ -61,24 +55,23 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-// userSchema.pre('save', function (next) {
-//   const user = this;
+userSchema.pre("save", function (next) {
+  const user = this;
 
-//   if (!user.isModified('password')) {
-//     return next();
-//   }
+  if (!user.isModified("password")) {
+    return next();
+  }
 
-//   bcrypt.genSalt(SALT_WORK_FACTOR)
-//     .then((salt) => {
-//       bcrypt.hash(user.password, salt)
-//         .then((hash) => {
-//           user.password = hash;
-//           next();
-//         });
-//     })
-//     .catch(error => next(error));
-// });
-
+  bcrypt
+    .genSalt(SALT_WORK_FACTOR)
+    .then((salt) => {
+      bcrypt.hash(user.password, salt).then((hash) => {
+        user.password = hash;
+        next();
+      });
+    })
+    .catch((error) => next(error));
+});
 
 const User = mongoose.model('User', userSchema);
 
