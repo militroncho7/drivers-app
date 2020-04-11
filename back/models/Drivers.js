@@ -1,20 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const driverSchema = new Schema(
   {
-    idPiloto: String,
     initialValue: Number,
     market: true,
     nameDriver: String,
-    lastnameDriver: String,
-    //idNumberDriver: Number
+    lastnameDriver: String    
   },
   {
     timestamps: true
   }
 );
 
-const Drivers = mongoose.model("Drivers", userSchema);
+const Drivers = mongoose.model("Drivers", driverSchema);
 
 module.exports = Drivers;

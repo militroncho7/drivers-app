@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       // required: [true, 'Password is required'],
-      // match: [PASSWORD_PATTERN, 'Invalid password pattern'],
+      // match: [PASSWORD_PATTERN, 'Invalid password pattern']
     },
     name: {
       type: String,
@@ -37,7 +37,10 @@ const userSchema = new mongoose.Schema(
       unique: false,
       default: null,
       lowercase: true
-    }
+    },
+      points: { type: Number, default: 0 },
+      drivers: [{ type: Schema.Types.ObjectId, ref: "Drivers" }],
+      money: { type: Number, default: 100.000 }
   },
   {
     timestamps: true,
