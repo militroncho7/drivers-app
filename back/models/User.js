@@ -38,9 +38,9 @@ const userSchema = new mongoose.Schema(
       default: null,
       lowercase: true
     },
-      points:{ type: Number },
+      points: { type: Number, default: 0 },
       drivers: [{ type: Schema.Types.ObjectId, ref: "Drivers" }],
-      money: { type: Number }
+      money: { type: Number, default: 100.000 }
   },
   {
     timestamps: true,
