@@ -9,8 +9,4 @@ npm-debug.log
 .DS_Store
 .vscode
 .env
-=======
-  
-.cache
-dist
->>>>>>> feature/front
+
