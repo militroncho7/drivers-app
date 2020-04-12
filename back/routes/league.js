@@ -13,10 +13,6 @@ const fs = require('fs');
 router.post("/create", isLoggedIn(), async (req, res, next) => {
   const { name } = req.body;
   const idUser = req.user;
-  const api = () =>
-    axios.get(`http://ergast.com/api/f1/2019/drivers.json`);
-
-  console.log(api);
 
   const newLeague = await League.create({
     name,

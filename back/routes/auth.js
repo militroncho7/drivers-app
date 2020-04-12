@@ -4,6 +4,7 @@ const passport = require("passport");
 const router = express.Router();
 const _ = require("lodash");
 const { isLoggedIn } = require("../lib/isLoggedMiddleware");
+//const uploader = require("../cloudinary/cloudinary.config");
 
 //Singup
 router.get("/signup", (req, res) => {
@@ -71,5 +72,54 @@ router.get("/profile", isLoggedIn(), (req, res, next) => {
   if (req.user) return res.json(req.user);
   else return res.status(401).json({ status: "No user session present" });
 });
+
+//Edit
+router.post("/edit", isLoggedIn(), async (req, res, next) => {
+  try {
+    const id = req.user._id;
+    const {
+      username,
+      name,
+      lastname,
+      email
+    } = req.body;
+    await User.findByIdAndUpdate(id, {
+      username,
+      name,
+      lastname,
+      email
+    });
+    return res.json({
+      status: 200,
+      message: "User edit!",
+    });
+  } catch (error) {
+    return res.json({ status: 401, message: "Fallo al editar Usuario" });
+  }
+});
+
+//Image upload
+// router.post("/upload", uploader.single("imageUrl"), async (req, res, next) => {
+//   const imageUpload = req.file.secure_url;
+
+//   if (!req.file) {
+//     next(new Error("No existe ningún archivo para subir"));
+//     return;
+//   }
+//   if (req.user) {
+//     await Users.findByIdAndUpdate(
+//       req.user._id,
+//       {
+//         image: imageUpload,
+//       },
+//       { new: true }
+//     );
+//   }
+//   res.json({
+//     secure_url: imageUpload,
+//     status: 200,
+//     message: "Image upload!",
+//   });
+// });
 
 module.exports = router;
