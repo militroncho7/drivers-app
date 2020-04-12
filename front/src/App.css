@@ -7,14 +7,14 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
-  background-color: #282c34;
+  background-image: url("https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586688460/drivers/background/background-metalic_o0lbmq.jpg");
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.button {
+  background-color: #FF1E02;
+  padding: 10px 40px;
+  border-radius: 15px;
+  border: none;
+  font-size: 30px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: inline-block;
+  font-family: "Roboto", verdana, sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1;
+  outline: none;
+  padding: 10px 25px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.button:hover{
+  background-color: #FF7777;
 }

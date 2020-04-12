@@ -1,23 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Link } from "react-router-dom";
+// import { ButtonLink } from "./components/ButtonLink"
+// import LogoDrivers from "./components/Logos";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* <LogoDrivers className="App-logo" alt="logo" /> */}
+        <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586515096/drivers/logo/logo-drivers-red_gbk3gt.png" className="App-logo" alt="logo" />
+        <button to="#" className="button"> GO!</button>
       </header>
     </div>
   );
