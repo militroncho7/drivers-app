@@ -7,7 +7,7 @@ const bidSchema = new Schema(
     userOferta: [{ type: Schema.Types.ObjectId, ref: "User" }],
     userRecibe: [{ type: Schema.Types.ObjectId, ref: "User" }],
     bid: Number,
-    status: false
+    status: { type: Boolean, default: false }
   },
   {
     timestamps: true

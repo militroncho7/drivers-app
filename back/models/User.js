@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
 
 const SALT_WORK_FACTOR = 10;
 const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -38,9 +39,9 @@ const userSchema = new mongoose.Schema(
       default: null,
       lowercase: true
     },
-      points: { type: Number, default: 0 },
-      drivers: [{ type: Schema.Types.ObjectId, ref: "Drivers" }],
-      money: { type: Number, default: 100.000 }
+    points: { type: Number, default: 0 },
+    drivers: { type: Schema.Types.ObjectId, ref: "Drivers" },
+    money: { type: Number, default: 100.000 }
   },
   {
     timestamps: true,
