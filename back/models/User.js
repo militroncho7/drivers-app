@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
     },
     points: { type: Number, default: 0 },
     drivers: { type: Schema.Types.ObjectId, ref: "Drivers" },
-    money: { type: Number, default: 100.000 }
+    money: { type: Number, default: 60000000 }
   },
   {
     timestamps: true,

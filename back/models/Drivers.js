@@ -3,10 +3,16 @@ const Schema = mongoose.Schema;
 
 const driverSchema = new Schema(
   {
+    driverId: String,
+    permanentNumber: Number,
+    code: String,
+    url: String,
+    givenName: String,
+    familyName: String,
+    dateOfBirth:String,
+    nationality: String,
     initialValue: Number,
-    market: { type: Boolean, default: true },
-    nameDriver: String,
-    lastnameDriver: String
+    market: { type: Boolean, default: true }
   },
   {
     timestamps: true
