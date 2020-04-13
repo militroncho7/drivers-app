@@ -53,7 +53,23 @@ router.post("/login", (req, res, next) => {
       return res.json(_.pick(req.user, ["username", "password", "name", "lastname", "email"]));
     });
   })(req, res, next);
-});
+  
+
+  req.logIn(newUser, (err) => {
+    return res.json(
+      _.pick(req.user, [
+        "_id",
+        "username",
+        "name",
+        "lastname",
+        "email",
+        "points",
+        "drivers",
+        "money"
+      ])
+    );
+  });
+
 
 //Logout
 router.get("/logout", isLoggedIn(), (req, res, next) => {

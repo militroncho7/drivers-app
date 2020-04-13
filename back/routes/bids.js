@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const League = require("../models/League");
+const Bids = require("../models/Bids");
 const Drivers = require("../models/Drivers");
+const League = require("../models/League");
 const User = require("../models/User");
 const _ = require("lodash");
 const { isLoggedIn, isLoggedOut } = require("../lib/isLoggedMiddleware");
@@ -11,10 +12,10 @@ const fs = require('fs');
 
 //Create Bid
 router.post("/create", isLoggedIn(), async (req, res, next) => {
-    const { name } = req.body;
+    const { driver, userOffer, userReceives, bid, status } = req.body;
     const idUser = req.user;
   
-    const newbid = await Bid.create({
+    const newBid = await Bid.create({
       driver,
       userOffer: idUser,
       userReceives: idUser,
@@ -23,14 +24,12 @@ router.post("/create", isLoggedIn(), async (req, res, next) => {
     });
   
     return res.json({
-      league: _.pick(newLeague, [
+      Bids: _.pick(newBid, [
         "driver",
         "userOffer",
         "userReceives",
         "bid",
         "status"
-        "createdAt",
-        "updatedAt",
       ]),
       status: 200,
       message: "Puja creada!",
@@ -42,7 +41,7 @@ router.post("/create", isLoggedIn(), async (req, res, next) => {
 //     try {
 //       const { _id } = req.body;
 //       if (_id) {
-//         const bidList = await League.find({
+//         const bidList = await Bids.find({
 //           playerAdmin: { _id: _id },
 //         })
 //           .sort({ createdAt: -1 })
@@ -50,7 +49,7 @@ router.post("/create", isLoggedIn(), async (req, res, next) => {
   
 //         return res.json(bidList);
 //       } else {
-//         const bidList = await League.find().populate("playerAdmin");
+//         const bidList = await Bids.find().populate("playerAdmin");
 //         return res.json(bidList);
 //       }
 //     } catch (err) {
@@ -62,7 +61,7 @@ router.post("/create", isLoggedIn(), async (req, res, next) => {
   router.post("/delete", isLoggedIn(), async (req, res) => {
     try {
       const { _id } = req.body;
-      await League.findByIdAndRemove(_id);
+      await Bids.findByIdAndRemove(_id);
       return res.json({
         status: 200,
         message: "Puja eliminada",
