@@ -12,11 +12,15 @@ const user = require("./auth");
 router.use("/auth", user);
 
 //Market
-const market = require('./market');
-router.use('/market', market);
+const market = require("./market");
+router.use("/market", market);
 
 //League
-const league = require('./league');
-router.use('/league', league);
+const league = require("./league");
+router.use("/league", league);
+
+//Bids
+const bids = require("./bids");
+router.use("/bids", bids);
 
 module.exports = router;
