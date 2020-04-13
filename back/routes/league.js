@@ -34,12 +34,6 @@ router.post("/create", isLoggedIn(), async (req, res, next) => {
   });
 });
 
-//Assign values
-router.post("/assignValues", isLoggedIn(), async (req, res, next) => {
-
-});
-
-
 //Get all leagues
 router.post("/alls", async (req, res) => {
   try {
