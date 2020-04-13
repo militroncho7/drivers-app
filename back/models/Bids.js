@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const bidSchema = new Schema(
   {
     driver: [{ type: Schema.Types.ObjectId, ref: "Drivers" }],
-    userOferta: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    userRecibe: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    userOffer: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    userReceives: [{ type: Schema.Types.ObjectId, ref: "User" }],
     bid: Number,
     status: { type: Boolean, default: false }
   },
