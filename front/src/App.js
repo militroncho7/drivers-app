@@ -1,19 +1,27 @@
 import React from 'react';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 // import { Link } from "react-router-dom";
 // import { ButtonLink } from "./components/ButtonLink"
 // import LogoDrivers from "./components/Logos";
 
+import HomePage from 'pages/Home.page';
+import RegisterPage, {RegisterClass} from 'pages/Register.page';
+
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <LogoDrivers className="App-logo" alt="logo" /> */}
-        <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586515096/drivers/logo/logo-drivers-red_gbk3gt.png" className="App-logo" alt="logo" />
-        <button to="#" className="button"> GO!</button>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/register">
+          <RegisterPage />
+        </Route>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

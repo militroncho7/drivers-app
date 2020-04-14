@@ -16,7 +16,8 @@ router.post("/signup", async (req, res, next) => {
   //console.log(sername, password, name, lastname, email);
   try {
     if (!username || !password || !name || !lastname ||!email) {
-      res.json("Please, complete Username, Password or Email");
+      res.status(403);
+      res.json({message: "Please, complete Username, Password or Email", data: null, code: 400});
       return;
     }
     const existingUser = await User.findOne({ username });
@@ -50,7 +51,8 @@ router.post("/login", (req, res, next) => {
         console.log(err);
         return res.json({ status: 500, message: "authentication error" });
       }
-      return res.json(_.pick(req.user, ["username", "password", "name", "lastname", "email"]));
+      const {user: { username, password, lastname, email }} = req;
+      return res.json({username, password, lastname, email}));
     });
   })(req, res, next);
   
