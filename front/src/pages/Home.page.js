@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonLink from "components/ButtonLink/Index";
+import ButtonLink from "components/ButtonLink/index";
 import LogoApp from "components/Logos/LogoApp";
 
 export default function Home() {

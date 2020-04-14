@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ButtonLink from "components/ButtonLink/Index";
+import ButtonLink from "components/ButtonLink";
 import LogoMedium from "components/Logos/LogoMedium";
 
 export default function Register() {
@@ -44,12 +44,19 @@ export default function Register() {
             <label>Nombre de Usuario</label>
           </div>
           <div className="user-box">
-            <input type="password" onChange={handleChangePassword} />
+            <input type="password" onChange={handleChangePassword} required />
             <label>Contraseña</label>
           </div>
+          <a href="/">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            ¿No tienes una cuenta?
+          </a>
         </form>
 
-        <ButtonLink type="submit" whereTo="/" className="button" id="light">
+        <ButtonLink type="submit" whereTo="/" className="button">
           GO!
         </ButtonLink>
       </div>
