@@ -69,7 +69,8 @@ router.post("/login", (req, res, next) => {
       ])
     );
   });
-
+  
+});
 
 //Logout
 router.get("/logout", isLoggedIn(), (req, res, next) => {

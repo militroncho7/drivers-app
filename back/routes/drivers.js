@@ -11,62 +11,91 @@ const fs = require('fs');
 
 // Create Driver List
 router.post("/create", isLoggedIn(), async (req, res, next) => {
-  const { name } = req.body;
+  const {
+    driverId,
+    permanentNumber,
+    code,
+    url,
+    givenName,
+    familyName,
+    dateOfBirth,
+    nationality,
+    initialValue,
+    market
+  } = req.body;
+
   const idUser = req.user;
 
-  const newLeague = await League.create({
-    name,
+  const driversList = await Drivers.create({
+    driverId,
+    permanentNumber,
+    code,
+    url,
+    givenName,
+    familyName,
+    dateOfBirth,
+    nationality,
+    initialValue,
+    market,
     playerAdmin: idUser,
     players: idUser
   });
 
   return res.json({
-    league: _.pick(newLeague, [
-      "_id",
-      "name",
-      "players",
-      "playerAdmin",
+    drivers: _.pick(driversList, [
+      "driverId",
+      "permanentNumber",
+      "givenName",
+      "familyName",
       "createdAt",
       "updatedAt",
     ]),
     status: 200,
-    message: "Liga creada!",
+    message: "Lista de pilotos creada!",
   });
 });
 
-//Get all leagues
+//Get all drivers
 router.post("/alls", async (req, res) => {
   try {
     const { _id } = req.body;
     if (_id) {
-      const leagueList = await League.find({
+      const driversList = await Drivers.find({
         playerAdmin: { _id: _id },
       })
         .sort({ createdAt: -1 })
-        .populate("players").populate("drivers").populate("playerAdmin");
+        .populate("driverId")
+        .populate("permanentNumber")
+        .populate("code")
+        .populate("givenName")
+        .populate("familyName")
+        .populate("dateOfBirth")
+        .populate("nationality")
+        .populate("initialValue")
+        .populate("market");
 
       return res.json(leagueList);
     } else {
-      const leagueList = await League.find().populate("playerAdmin");
-      return res.json(leagueList);
+      const driversList = await Drivers.find().populate("playerAdmin");
+      return res.json(driversList);
     }
   } catch (err) {
     return res.json({ status: 400, message: "Fallo al recibir los datos" });
   }
 });
 
-//Delete leagues
-router.post("/delete", isLoggedIn(), async (req, res) => {
-  try {
-    const { _id } = req.body;
-    await League.findByIdAndRemove(_id);
-    return res.json({
-      status: 200,
-      message: "Liga eliminada",
-    });
-  } catch (err) {
-    return res.json({ status: 400, message: "No encontrado" });
-  }
-});
+// //Delete drivers
+// router.post("/delete", isLoggedIn(), async (req, res) => {
+//   try {
+//     const { _id } = req.body;
+//     await Drivers.findByIdAndRemove(_id);
+//     return res.json({
+//       status: 200,
+//       message: "Piloto eliminado",
+//     });
+//   } catch (err) {
+//     return res.json({ status: 400, message: "No encontrado" });
+//   }
+// });
 
 module.exports = router;
