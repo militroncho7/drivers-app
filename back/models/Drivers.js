@@ -9,13 +9,16 @@ const driverSchema = new Schema(
     url: String,
     givenName: String,
     familyName: String,
-    dateOfBirth:String,
+    dateOfBirth: String,
     nationality: String,
     initialValue: Number,
-    market: { type: Boolean, default: true }
+    market: { type: Boolean, default: true },
+    img: String,
+    car: String,
+    logo: String,
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
