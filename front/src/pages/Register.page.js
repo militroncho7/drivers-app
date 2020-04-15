@@ -12,7 +12,7 @@ export default function Register() {
     event.preventDefault();
     try {
       // const response = await fetch('url', 'POST', {name, email, password});
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("http://localhost:1234/auth/login", {
         username,
         password,
       });
@@ -24,7 +24,7 @@ export default function Register() {
     }
   }
 
-  function handleChangeUserame(event) {
+  function handleChangeUsername(event) {
     setUsername(event.target.value);
   }
 
@@ -36,29 +36,28 @@ export default function Register() {
     <>
       <div className="login-box">
         <LogoMedium className="sizeImage" />
-        <h3>Login</h3>
+        <h3>¡Inicia sesión!</h3>
         <form onSubmit={handleSubmit}>
           {error.length > 0 && <div>Error: {error}</div>}
           <div className="user-box">
-            <input type="text" onChange={handleChangeUserame} required />
+            <input type="text" onChange={handleChangeUsername} required />
             <label>Nombre de Usuario</label>
           </div>
           <div className="user-box">
             <input type="password" onChange={handleChangePassword} required />
             <label>Contraseña</label>
           </div>
-          <a href="/">
+          <a href="/signup">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             ¿No tienes una cuenta?
           </a>
+          <ButtonLink type="submit" whereTo="/" className="button">
+            GO!
+          </ButtonLink>
         </form>
-
-        <ButtonLink type="submit" whereTo="/" className="button">
-          GO!
-        </ButtonLink>
       </div>
     </>
   );

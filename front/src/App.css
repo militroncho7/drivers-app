@@ -62,14 +62,20 @@ body {
   text-transform: uppercase;
   text-decoration: none;
   transition: 0.5s;
+  margin: 20px 10px;
 }
-
 .button:hover {
   background-color: #cd2813;
   color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 5px #cd2813, 0 0 25px #cd2813, 0 0 50px #cd2813,
     0 0 100px #cd2813;
+}
+
+.container-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /* START LOGIN */
