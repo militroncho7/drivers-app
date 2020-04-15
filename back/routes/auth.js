@@ -12,17 +12,23 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", async (req, res, next) => {
-  const { username, password, name, lastname, email} = req.body;
-  //console.log(sername, password, name, lastname, email);
+  const { username, password, name, lastname, email } = req.body;
+  console.log(username, password, name, lastname, email);
   try {
-    if (!username || !password || !name || !lastname ||!email) {
+    if (!username || !password || !name || !lastname || !email) {
       res.json("Please, complete Username, Password or Email");
       return;
     }
     const existingUser = await User.findOne({ username });
 
     if (!existingUser) {
-      const newUser = await User.create({ username, password, name, lastname, email });
+      const newUser = await User.create({
+        username,
+        password,
+        name,
+        lastname,
+        email,
+      });
       req.login(newUser, (err) => {
         res.json(newUser);
       });
@@ -50,10 +56,11 @@ router.post("/login", (req, res, next) => {
         console.log(err);
         return res.json({ status: 500, message: "authentication error" });
       }
-      return res.json(_.pick(req.user, ["username", "password", "name", "lastname", "email"]));
+      return res.json(
+        _.pick(req.user, ["username", "password", "name", "lastname", "email"])
+      );
     });
   })(req, res, next);
-  
 
   req.logIn(newUser, (err) => {
     return res.json(
@@ -65,11 +72,10 @@ router.post("/login", (req, res, next) => {
         "email",
         "points",
         "drivers",
-        "money"
+        "money",
       ])
     );
   });
-  
 });
 
 //Logout
@@ -94,17 +100,12 @@ router.get("/profile", isLoggedIn(), (req, res, next) => {
 router.post("/edit", isLoggedIn(), async (req, res, next) => {
   try {
     const id = req.user._id;
-    const {
-      username,
-      name,
-      lastname,
-      email
-    } = req.body;
+    const { username, name, lastname, email } = req.body;
     await User.findByIdAndUpdate(id, {
       username,
       name,
       lastname,
-      email
+      email,
     });
     return res.json({
       status: 200,

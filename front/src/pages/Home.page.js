@@ -1,16 +1,18 @@
 import React from "react";
+
+//Components
 import ButtonLink from "components/ButtonLink/index";
 import LogoApp from "components/Logos/LogoApp";
 
 export default function Home() {
   return (
     <div>
-      <header className="App-header">
+      <section className="App-header">
         <LogoApp className="App-Logo" maxHeight="100px" />
         <ButtonLink whereTo="/register" className="button">
-          GO!
+          <b>GO!</b>
         </ButtonLink>
-      </header>
+      </section>
     </div>
   );
 }

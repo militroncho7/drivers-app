@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+
+//Components
 import ButtonLink from "components/ButtonLink";
 import LogoMedium from "components/Logos/LogoMedium";
 
@@ -54,8 +56,8 @@ export default function Register() {
             <span></span>
             ¿No tienes una cuenta?
           </a>
-          <ButtonLink type="submit" whereTo="/" className="button">
-            GO!
+          <ButtonLink type="submit" whereTo="/league" className="button">
+            <b>GO!</b>
           </ButtonLink>
         </form>
       </div>
