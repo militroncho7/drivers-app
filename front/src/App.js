@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-// import { Link } from "react-router-dom";
-// import { ButtonLink } from "./components/ButtonLink"
-// import LogoDrivers from "./components/Logos";
-
+//Pages
 import HomePage from 'pages/Home.page';
-import RegisterPage, {RegisterClass} from 'pages/Register.page';
+import RegisterPage from 'pages/Register.page';
+import SignupPage from 'pages/Signup.pages';
+import LeaguePage from 'pages/League.page';
+import MarketPage from 'pages/Market.page';
 
 const App = () => {
   return (
@@ -15,6 +15,15 @@ const App = () => {
       <Switch>
         <Route path="/register">
           <RegisterPage />
+        </Route>
+        <Route path="/signup">
+          <SignupPage />
+        </Route>
+        <Route path="/league">
+          <LeaguePage />
+        </Route>
+        <Route path="/market">
+          <MarketPage />
         </Route>
         <Route path="/" exact>
           <HomePage />

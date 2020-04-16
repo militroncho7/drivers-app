@@ -1,16 +1,18 @@
-import React from 'react';
-import ButtonLink from 'components/ButtonLink';
-import LogoApp from 'components/Logos/LogoApp';
+import React from "react";
+
+//Components
+import ButtonLink from "components/ButtonLink/index";
+import LogoApp from "components/Logos/LogoApp";
 
 export default function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <LogoApp className="App-Logo" />
+    <div>
+      <section className="App-header">
+        <LogoApp className="App-Logo" maxHeight="100px" />
         <ButtonLink whereTo="/register" className="button">
-          GO!
+          <b>GO!</b>
         </ButtonLink>
-      </header>
+      </section>
     </div>
   );
 }

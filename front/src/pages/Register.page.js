@@ -1,72 +1,54 @@
 import React, {useState} from 'react';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
+
+//Components
+
+import RegisterView from 'components/screens/Register/Register';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoginSuccessfull, setIsLoginSuccessfull] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
     try {
       // const response = await fetch('url', 'POST', {name, email, password});
-      const response = await axios.post('http://localhost:1234', {
-        name,
-        email,
+      const response = await axios.post('http://localhost:1234/auth/login', {
+        username,
         password
       });
       const data = JSON.parse(response.data);
-      console.log(`Nombre almacenado: ${name}`);
-      console.log(`Email almacenado: ${email}`);
-      console.log(`Password almacenado: ${password}`);
+      setIsLoginSuccessfull(true);
+      // console.log(`Nombre almacenado: ${username}`);
+      // console.log(`Password almacenado: ${password}`);
     } catch (exception) {
       setError(exception.message);
     }
   }
 
-  function handleChangeName(event) {
-    setName(event.target.value);
-  }
-
-  function handleChangeEmail(event) {
-    setEmail(event.target.value);
+  function handleChangeUsername(event) {
+    setUsername(event.target.value);
   }
 
   function handleChangePassword(event) {
     setPassword(event.target.value);
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      {error.length > 0 && <div>Error: {error}</div>}
-      <div>
-        <label>nombre</label>
-        <input type="text" onChange={handleChangeName} />
-      </div>
-      <div>
-        <label>email</label>
-        <input type="email" onChange={handleChangeEmail} />
-      </div>
-      <div>
-        <label>contraseña</label>
-        <input type="password" onChange={handleChangePassword} />
-      </div>
-      <button type="submit">¡Regístrame!</button>
-    </form>
-  );
-}
-
-export class RegisterClass extends React.Component {
-  state = {
-    count: 0
-  };
-
-  render() {
-    return (
-      <>
-        <div>Contador: {this.state.count}</div>
-        <button onClick={() => this.setState({count: this.state.count + 1})}>Incrementar</button>
-      </>
-    );
+  if (isLoginSuccessfull) {
+    return <Redirect to="/league" />;
   }
+
+  return (
+    <RegisterView
+      onSubmit={handleSubmit}
+      onChangeUsername={handleChangeUsername}
+      onChangePassword={handleChangePassword}
+      error={error}
+      username={username}
+      password={password}
+    />
+  );
 }

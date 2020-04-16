@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export default function LogoApp({className}) {
+export default function LogoApp({ className }) {
   return (
     <img
       className={className}
