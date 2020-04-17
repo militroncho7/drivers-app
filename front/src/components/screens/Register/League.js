@@ -36,7 +36,9 @@ export default function League({ name, onSubmit, onChangeName, error }) {
                 value="go!"
                 whereTo="/league"
                 className="button"
-              />
+              >
+                <b>GO!</b>
+              </Button>
               <Link type="text" className="button" to="/login">
                 <b>Back!</b>
               </Link>

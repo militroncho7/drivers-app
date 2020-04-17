@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 //Components
 import Nav from "components/Nav/Nav";
 import Pilot from "components/Pilot";
+import Button from "components/ButtonLink/Button";
 
 const loadedPilots = [
   {
@@ -37,33 +38,131 @@ export default function Market() {
   }
   return (
     <>
-      <div>
-        <Nav></Nav>
-      </div>
+      <Nav />
 
-      <div class="market">
-        <h2>MERCADO</h2>
-        <ul class="cards">
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image">
-                <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959333/drivers/pilotos/albon_cwdqb5.png" />
+      <div className="section-market">
+        <div className="card-market">
+          <div className="card-pilot">
+            <div className="pilot-image">
+              <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959333/drivers/pilotos/albon_cwdqb5.png" />
+            </div>
+            <div className="pilot-data">
+              <div>
+                <ul>
+                  <li>Alexander Albon</li>
+                  <li>Numero: 23</li>
+                  <li>Valor: 75000000€</li>
+                  <li>Fecha Nacimiento: 1996-03-23</li>
+                </ul>
               </div>
-              <div class="card_content">
-                <h2 class="card_title">Alexander Albon</h2>
-                <p class="card_text">Info Piloto</p>
-                <button class="btn card_btn">Read More</button>
+              <div>
+                <img
+                  className="car-image"
+                  src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/redbull_gfhdht.png"
+                />
               </div>
             </div>
-          </li>
-        </ul>
+          </div>
+          <div>
+            <Button className="button">
+              <b>FICHAR</b>
+            </Button>
+          </div>
+        </div>
+
+        <div className="card-market">
+          <div className="card-pilot">
+            <div className="pilot-image">
+              <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959333/drivers/pilotos/bottas_c5jaip.png" />
+            </div>
+            <div className="pilot-data">
+              <div>
+                <ul>
+                  <li>Alexander Albon</li>
+                  <li>Numero: 23</li>
+                  <li>Valor: 75000000€</li>
+                  <li>Fecha Nacimiento: 1996-03-23</li>
+                </ul>
+              </div>
+              <div>
+                <img
+                  className="car-image"
+                  src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/mercedes_n34yi5.png"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <Button className="button">
+              <b>FICHAR</b>
+            </Button>
+          </div>
+        </div>
+
+        <div className="card-market">
+          <div className="card-pilot">
+            <div className="pilot-image">
+              <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959333/drivers/pilotos/albon_cwdqb5.png" />
+            </div>
+            <div className="pilot-data">
+              <div>
+                <ul>
+                  <li>Alexander Albon</li>
+                  <li>Numero: 23</li>
+                  <li>Valor: 75000000€</li>
+                  <li>Fecha Nacimiento: 1996-03-23</li>
+                </ul>
+              </div>
+              <div>
+                <img
+                  className="car-image"
+                  src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/redbull_gfhdht.png"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <Button className="button">
+              <b>FICHAR</b>
+            </Button>
+          </div>
+        </div>
+
+        <div className="card-market">
+          <div className="card-pilot">
+            <div className="pilot-image">
+              <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959333/drivers/pilotos/bottas_c5jaip.png" />
+            </div>
+            <div className="pilot-data">
+              <div>
+                <ul>
+                  <li>Alexander Albon</li>
+                  <li>Numero: 23</li>
+                  <li>Valor: 75000000€</li>
+                  <li>Fecha Nacimiento: 1996-03-23</li>
+                </ul>
+              </div>
+              <div>
+                <img
+                  className="car-image"
+                  src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/mercedes_n34yi5.png"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <Button className="button">
+              <b>FICHAR</b>
+            </Button>
+          </div>
+        </div>
       </div>
 
-      <div class="pilots-list">
-        {pilots.map((pilot) => (
-          <Pilot {...pilot} />
-        ))}
-      </div>
+      {/* <div class="pilots-list">
+          {pilots.map((pilot) => (
+            <Pilot {...pilot} />
+          ))}
+        </div> */}
     </>
   );
 }
