@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <section className="App-header">
         <LogoApp className="App-Logo" maxHeight="100px" />
-        <ButtonLink whereTo="/register" className="button">
+        <ButtonLink whereTo="/login" className="button">
           <b>GO!</b>
         </ButtonLink>
       </section>

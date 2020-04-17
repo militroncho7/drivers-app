@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 //Components
-import ButtonLink from "components/ButtonLink";
-import LogoMedium from "components/Logos/LogoMedium";
+import RegisterView from "components/screens/Register/Register";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoginSuccessfull, setIsLoginSuccessfull] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -19,6 +20,7 @@ export default function Register() {
         password,
       });
       const data = JSON.parse(response.data);
+      setIsLoginSuccessfull(true);
       // console.log(`Nombre almacenado: ${username}`);
       // console.log(`Password almacenado: ${password}`);
     } catch (exception) {
@@ -34,33 +36,18 @@ export default function Register() {
     setPassword(event.target.value);
   }
 
+  // if (isLoginSuccessfull) {
+  //   return <Redirect to="/league" />;
+  // }
+
   return (
-    <>
-      <div className="login-box">
-        <LogoMedium className="sizeImage" />
-        <h3>¡Inicia sesión!</h3>
-        <form onSubmit={handleSubmit}>
-          {error.length > 0 && <div>Error: {error}</div>}
-          <div className="user-box">
-            <input type="text" onChange={handleChangeUsername} required />
-            <label>Nombre de Usuario</label>
-          </div>
-          <div className="user-box">
-            <input type="password" onChange={handleChangePassword} required />
-            <label>Contraseña</label>
-          </div>
-          <a href="/signup">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            ¿No tienes una cuenta?
-          </a>
-          <ButtonLink type="submit" whereTo="/league" className="button">
-            <b>GO!</b>
-          </ButtonLink>
-        </form>
-      </div>
-    </>
+    <RegisterView
+      onSubmit={handleSubmit}
+      onChangeUsername={handleChangeUsername}
+      onChangePassword={handleChangePassword}
+      error={error}
+      username={username}
+      password={password}
+    />
   );
 }

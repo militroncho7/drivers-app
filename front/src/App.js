@@ -7,12 +7,13 @@ import HomePage from "pages/Home.page";
 import RegisterPage from "pages/Register.page";
 import SignupPage from "pages/Signup.pages";
 import LeaguePage from "pages/League.page";
+import MarketPage from "pages/Market.page";
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/register">
+        <Route path="/login">
           <RegisterPage />
         </Route>
         <Route path="/signup">
@@ -20,6 +21,9 @@ const App = () => {
         </Route>
         <Route path="/league">
           <LeaguePage />
+        </Route>
+        <Route path="/market">
+          <MarketPage />
         </Route>
         <Route path="/" exact>
           <HomePage />

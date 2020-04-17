@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
@@ -15,22 +16,22 @@ export default function Nav() {
         <nav id="menu">
           <ul>
             <li>
-              <a href="#">Mercado</a>
+              <Link to="#">Mercado</Link>
             </li>
             <li>
-              <a href="#">Equipo</a>
+              <Link to="#">Equipo</Link>
             </li>
             <li>
-              <a href="#">Ofertas</a>
+              <Link to="#">Ofertas</Link>
             </li>
             <li>
-              <a href="#">Puntuación</a>
+              <Link to="#">Puntuación</Link>
             </li>
             <li>
-              <a href="#">Carreras</a>
+              <Link to="#">Carreras</Link>
             </li>
             <li>
-              <a href="#">Cuenta</a>
+              <Link to="#">Cuenta</Link>
             </li>
           </ul>
         </nav>
