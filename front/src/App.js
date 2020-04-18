@@ -8,6 +8,8 @@ import RegisterPage from "pages/Register.page";
 import SignupPage from "pages/Signup.pages";
 import LeaguePage from "pages/League.page";
 import MarketPage from "pages/Market.page";
+import TeamPage from "pages/Team.page";
+import CircuitsPage from "pages/Circuits.page";
 
 const App = () => {
   return (
@@ -24,6 +26,12 @@ const App = () => {
         </Route>
         <Route path="/market">
           <MarketPage />
+        </Route>
+        <Route path="/team">
+          <TeamPage />
+        </Route>
+        <Route path="/circuits">
+          <CircuitsPage />
         </Route>
         <Route path="/" exact>
           <HomePage />
