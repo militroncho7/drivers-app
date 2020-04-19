@@ -5,11 +5,16 @@ RojoOscuro:# cd2813
 */
 
 body {
+  max-width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  /*background-image: url("https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586688460/drivers/background/background-metalic_o0lbmq.jpg"); */
-  height: 980px;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  background-image: url("https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586688460/drivers/background/background-metalic_o0lbmq.jpg");
+  height: 100vh;
   background-position: bottom left;
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,7 +27,6 @@ body {
 }
 
 .App-header {
-  background-image: url('https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586688460/drivers/background/background-metalic_o0lbmq.jpg');
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,6 +53,9 @@ body {
   width: 80%;
   margin: auto;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* HEADER */
@@ -98,7 +105,7 @@ body {
 
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
-  content: '';
+  content: "";
   position: absolute;
 }
 
@@ -127,7 +134,7 @@ body {
 
 #menu {
   position: absolute;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.6);
   text-align: right;
   top: 100%;
   left: 0;
@@ -150,7 +157,7 @@ body {
   color: #fff;
   font-size: 18px;
   text-transform: uppercase;
-  font-weight: bold;
+  letter-spacing: 2px;
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
 }
@@ -207,44 +214,42 @@ body {
 /* END NAV */
 .button {
   background-color: #000;
-  padding: 10px 40px;
+  padding: 10px 40px !important;
+  margin: 20px 10px !important;
   border-radius: 10px;
-  border: none;
-  font-size: 30px;
+  border: 1px solid #cd2813;
+  font-size: 20px !important;
   box-sizing: border-box;
   color: #cd2813;
-  display: flex;
-  justify-content: center;
-  font-family: 'Roboto', verdana, sans-serif;
+  text-align: center;
+  font-family: "Roboto", verdana, sans-serif;
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 1;
   outline: none;
-  padding: 10px 25px;
   text-decoration: none;
   cursor: pointer;
-  text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   transition: 0.5s;
-  margin: 20px 10px;
+  width: 45%;
 }
 .button:hover {
   background-color: #cd2813;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #cd2813, 0 0 25px #cd2813, 0 0 50px #cd2813, 0 0 100px #cd2813;
+  box-shadow: 0 0 5px #cd2813, 0 0 25px #cd2813, 0 0 50px #cd2813,
+    0 0 100px #cd2813;
 }
 
 .container-center {
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
 /* START LOGIN */
 
-.sizeImage {
+.size-image {
   max-height: 60px;
   display: flex;
   justify-content: center;
@@ -327,7 +332,8 @@ body {
   background: #cd2813;
   color: #f1eee6;
   border-radius: 5px;
-  box-shadow: 0 0 5px #cd2813, 0 0 25px #cd2813, 0 0 50px #cd2813, 0 0 100px #cd2813;
+  box-shadow: 0 0 5px #cd2813, 0 0 25px #cd2813, 0 0 50px #cd2813,
+    0 0 100px #cd2813;
 }
 
 .login-box a span {
@@ -414,3 +420,138 @@ body {
 }
 
 /* END LOGIN */
+
+/* CARD PILOT */
+
+.card-pilot {
+  display: flex;
+  flex-direction: row;
+  background: rgb(173, 173, 173);
+  border: 1px solid #424242;
+  border-radius: 3px;
+  box-shadow: 12px 10px 17px -2px rgba(0, 0, 0, 0.57);
+}
+
+.pilot-image {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.pilot-image img {
+  width: 100%;
+}
+
+.pilot-data {
+  width: 60%;
+  padding: 25px;
+  color: #000;
+}
+
+.pilot-data ul li {
+  list-style-type: none;
+  text-align: left;
+}
+.pilot-data ul {
+  padding: 0;
+}
+
+.car-image {
+  width: 100%;
+}
+
+@media (max-width: 799px) {
+  .card-pilot {
+    flex-direction: column;
+  }
+  .card-market,
+  .pilot-image,
+  .button {
+    width: 100%;
+  }
+
+  .pilot-data {
+    width: 92%;
+    padding: 4%;
+  }
+
+  .button {
+    margin: 15px 0px 0px !important;
+  }
+}
+/* END CARD PILOT */
+
+/* CARD CIRCUIT */
+.card-circuit {
+  display: flex;
+  flex-direction: row;
+  background: rgb(255, 255, 255);
+  border: 1px solid #424242;
+  border-radius: 3px;
+  box-shadow: 12px 10px 17px -2px rgba(0, 0, 0, 0.57);
+}
+@media (max-width: 799px) {
+  .card-circuit {
+    flex-direction: column;
+  }
+}
+/* END CARD CIRCUIT */
+
+/* START CARD MARKET */
+.section-market {
+  padding: 150px 50px 50px 50px;
+  background-color: rgb(15, 15, 15);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-market {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 50px;
+}
+/* END CARD MARKET */
+
+/* START FOOTER */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(36, 36, 36);
+  height: 60px;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  left: 0;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.footer p {
+  max-width: 50vh;
+  color: #fff;
+}
+
+.footer img {
+  max-width: 40px;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer a:hover {
+  color: #ff7777;
+}
+
+/* END FOOTER */
+
+/* STAR TEAMS */
+
+/* END TEAMS */

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import ButtonLink from 'components/ButtonLink';
-import LogoMedium from 'components/Logos/LogoMedium';
+import {Redirect} from 'react-router-dom';
+
+//Components
+import SignupView from 'components/screens/Register/Signup';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -10,6 +12,7 @@ export default function Signup() {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [isSignupSuccessfull, setIsLoginSuccessfull] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,9 +24,9 @@ export default function Signup() {
         lastname,
         email
       });
-      const data = JSON.parse(response.data);
+      setIsLoginSuccessfull(true);
     } catch (exception) {
-      setError(exception.message);
+      setError(exception.response.data.message);
     }
   }
 
@@ -47,43 +50,26 @@ export default function Signup() {
     setEmail(event.target.value);
   }
 
+  if (isSignupSuccessfull) {
+    return <Redirect to="/league" />;
+  }
+
   return (
     <>
-      <div className="login-box">
-        <LogoMedium className="sizeImage" />
-        <h3>¡Registrate!</h3>
-        <form onSubmit={handleSubmit}>
-          {error.length > 0 && <div>Error: {error}</div>}
-          <div className="user-box">
-            <input type="text" onChange={handleChangeUsername} required />
-            <label>Nombre de Usuario</label>
-          </div>
-          <div className="user-box">
-            <input type="password" onChange={handleChangePassword} required />
-            <label>Contraseña</label>
-          </div>
-          <div className="user-box">
-            <input type="text" onChange={handleChangeName} required />
-            <label>Nombre</label>
-            <div className="user-box">
-              <input type="text" onChange={handleChangeLastname} required />
-              <label>Apellido</label>
-            </div>
-            <div className="user-box">
-              <input type="email" onChange={handleChangeEmail} required />
-              <label>Correo electrónico</label>
-            </div>
-          </div>
-          <div className="container-center">
-            <ButtonLink type="submit" whereTo="/" className="button">
-              GO!
-            </ButtonLink>
-            <ButtonLink whereTo="/" className="button">
-              Back
-            </ButtonLink>
-          </div>
-        </form>
-      </div>
+      <SignupView
+        onSubmit={handleSubmit}
+        onChangeUsername={handleChangeUsername}
+        onChangePassword={handleChangePassword}
+        onChangeName={handleChangeName}
+        onChangeLastname={handleChangeLastname}
+        onChangeEmail={handleChangeEmail}
+        error={error}
+        username={username}
+        password={password}
+        name={name}
+        lastname={lastname}
+        email={email}
+      />
     </>
   );
 }

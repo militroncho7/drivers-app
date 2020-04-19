@@ -6,19 +6,25 @@ import Button from 'components/ButtonLink/Button';
 import LogoMedium from 'components/Logos/LogoMedium';
 import Alert from 'components/Alert';
 
-export default function Register({
+export default function Signup({
   username,
   password,
+  name,
+  lastname,
+  email,
   onSubmit,
   onChangeUsername,
   onChangePassword,
+  onChangeName,
+  onChangeLastname,
+  onChangeEmail,
   error
 }) {
   return (
     <>
       <div className="login-box">
         <LogoMedium className="size-image" />
-        <h3>¡Inicia sesión!</h3>
+        <h3>¡Registrate!</h3>
         <form onSubmit={onSubmit}>
           {error.length > 0 && <Alert type="danger">Error: {error}</Alert>}
           <div className="user-box">
@@ -29,17 +35,25 @@ export default function Register({
             <input type="password" onChange={onChangePassword} required value={password} />
             <label>Contraseña</label>
           </div>
-          <Link to="/signup">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            ¿No tienes una cuenta?
-          </Link>
+          <div className="user-box">
+            <input type="text" onChange={onChangeName} required value={name} />
+            <label>Nombre</label>
+            <div className="user-box">
+              <input type="text" onChange={onChangeLastname} required value={lastname} />
+              <label>Apellido</label>
+            </div>
+            <div className="user-box">
+              <input type="text" onChange={onChangeEmail} required value={email} />
+              <label>Correo electrónico</label>
+            </div>
+          </div>
           <div className="container-center">
             <Button type="submit" className="button">
               <b>GO!</b>
             </Button>
+            <Link type="text" className="button" to="/login">
+              <b>Back!</b>
+            </Link>
           </div>
         </form>
       </div>

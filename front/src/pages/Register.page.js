@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 
 //Components
-
 import RegisterView from 'components/screens/Register/Register';
 
 export default function Register() {
@@ -15,17 +14,14 @@ export default function Register() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      // const response = await fetch('url', 'POST', {name, email, password});
       const response = await axios.post('http://localhost:1234/auth/login', {
         username,
         password
       });
-      const data = JSON.parse(response.data);
+      window.localStorage.setItem('USER', JSON.stringify(response.data));
       setIsLoginSuccessfull(true);
-      // console.log(`Nombre almacenado: ${username}`);
-      // console.log(`Password almacenado: ${password}`);
     } catch (exception) {
-      setError(exception.message);
+      setError(exception.response.data.message);
     }
   }
 
