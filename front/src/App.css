@@ -422,22 +422,6 @@ body {
 /* END LOGIN */
 
 /* CARD PILOT */
-.section-market {
-  padding: 150px 50px 50px 50px;
-  background-color: rgb(15, 15, 15);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.card-market {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin-bottom: 50px;
-}
 
 .card-pilot {
   display: flex;
@@ -495,6 +479,7 @@ body {
     margin: 15px 0px 0px !important;
   }
 }
+/* END CARD PILOT */
 
 /* CARD CIRCUIT */
 .card-circuit {
@@ -512,10 +497,26 @@ body {
 }
 /* END CARD CIRCUIT */
 
+/* START CARD MARKET */
+.section-market {
+  padding: 150px 50px 50px 50px;
+  background-color: rgb(15, 15, 15);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-market {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 50px;
+}
+/* END CARD MARKET */
+
 /* START FOOTER */
-
-/* END CARD PILOT */
-
 .footer {
   display: flex;
   justify-content: center;
@@ -550,3 +551,7 @@ body {
 }
 
 /* END FOOTER */
+
+/* STAR TEAMS */
+
+/* END TEAMS */
