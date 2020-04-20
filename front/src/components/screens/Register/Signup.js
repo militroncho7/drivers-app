@@ -67,12 +67,12 @@ export default function Signup({
             </div>
           </div>
           <div className="container-center">
-            <Button type="submit" className="button">
-              <b>GO!</b>
-            </Button>
             <Link type="text" className="button" to="/login">
               <b>Back!</b>
             </Link>
+            <Button type="submit" className="button">
+              <b>GO!</b>
+            </Button>
           </div>
         </form>
       </div>

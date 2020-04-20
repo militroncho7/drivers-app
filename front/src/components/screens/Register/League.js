@@ -31,6 +31,9 @@ export default function League({ name, onSubmit, onChangeName, error }) {
               Busca tu liga
             </Link>
             <div className="container-center">
+              <Link type="text" className="button" to="/login">
+                <b>Back!</b>
+              </Link>
               <Button
                 type="submit"
                 value="go!"
@@ -39,9 +42,6 @@ export default function League({ name, onSubmit, onChangeName, error }) {
               >
                 <b>GO!</b>
               </Button>
-              <Link type="text" className="button" to="/login">
-                <b>Back!</b>
-              </Link>
             </div>
           </form>
         </div>
