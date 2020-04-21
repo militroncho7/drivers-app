@@ -1,8 +1,9 @@
-const passport = require("passport");
-const User = require("../models/User");
+const passport = require('passport');
+const User = require('../models/User');
 
 // Strategies
-require("./strategies/local");
+require('./strategies/local');
+require('./strategies/jwt');
 
 passport.serializeUser((user, cb) => {
   cb(null, user._id);

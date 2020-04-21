@@ -1,33 +1,32 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
+import React, {useState} from 'react';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 //Components
-import SignupView from "components/screens/Register/Signup";
+import SignupView from 'components/screens/Register/Signup';
 
 export default function Signup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [isSignupSuccessfull, setIsLoginSuccessfull] = useState("false");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [isSignupSuccessfull, setIsLoginSuccessfull] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:1234/auth/signup", {
+      const response = await axios.post('http://localhost:1234/auth/signup', {
         username,
         password,
         name,
         lastname,
-        email,
+        email
       });
-      const data = JSON.parse(response.data);
       setIsLoginSuccessfull(true);
     } catch (exception) {
-      setError(exception.message);
+      setError(exception.response.data.message);
     }
   }
 
@@ -51,9 +50,9 @@ export default function Signup() {
     setEmail(event.target.value);
   }
 
-  // if (isSignupSuccessfull) {
-  //   return <Redirect to="/league" />;
-  // }
+  if (isSignupSuccessfull) {
+    return <Redirect to="/league" />;
+  }
 
   return (
     <>

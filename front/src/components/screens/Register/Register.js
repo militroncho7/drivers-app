@@ -1,9 +1,10 @@
-import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from 'react';
+import {Link, Redirect} from 'react-router-dom';
 
 //Components
-import Button from "components/ButtonLink/Button";
-import LogoMedium from "components/Logos/LogoMedium";
+import Button from 'components/ButtonLink/Button';
+import LogoMedium from 'components/Logos/LogoMedium';
+import Alert from 'components/Alert';
 
 export default function Register({
   username,
@@ -11,7 +12,7 @@ export default function Register({
   onSubmit,
   onChangeUsername,
   onChangePassword,
-  error,
+  error
 }) {
   return (
     <>
@@ -19,23 +20,13 @@ export default function Register({
         <LogoMedium className="size-image" />
         <h3>¡Inicia sesión!</h3>
         <form onSubmit={onSubmit}>
-          {error.length > 0 && <div>Error: {error}</div>}
+          {error.length > 0 && <Alert type="danger">Error: {error}</Alert>}
           <div className="user-box">
-            <input
-              type="text"
-              onChange={onChangeUsername}
-              required
-              value={username}
-            />
+            <input type="text" onChange={onChangeUsername} required value={username} />
             <label>Nombre de Usuario</label>
           </div>
           <div className="user-box">
-            <input
-              type="password"
-              onChange={onChangePassword}
-              required
-              value={password}
-            />
+            <input type="password" onChange={onChangePassword} required value={password} />
             <label>Contraseña</label>
           </div>
           <Link to="/signup">

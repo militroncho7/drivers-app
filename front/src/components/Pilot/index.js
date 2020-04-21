@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from 'react';
 
 //Components
-import Button from "components/ButtonLink/Button";
+import Button from 'components/ButtonLink/Button';
 
 export default function Pilot({
   driverId,
@@ -12,8 +12,13 @@ export default function Pilot({
   initialValue,
   dateOfBirth,
   car,
-  onClickSignUp,
+  market
 }) {
+  // const [fichar, setFichar] = useState('');
+  // function handleOnClick() {
+  //   console.log(fichar);
+  //   setFichar(!market);
+  // }
   return (
     <>
       <div className="card-market">
