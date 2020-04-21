@@ -24,11 +24,11 @@ export default function Market() {
   return (
     <>
       <Nav />
-      {/* <Status /> */}
+      <Status />
 
       <div className="section-market">
         {pilots.map((pilot) => (
-          <Pilot {...pilot} />
+          <Pilot {...pilot} key={`pilot-${pilot.id}`} />
         ))}
       </div>
 

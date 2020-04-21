@@ -1,5 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const User = require('../models/User');
+const League = require('../models/League');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
@@ -51,7 +53,7 @@ router.post('/login', (req, res, next) => {
     if (!user) {
       return res.status(400).json(info);
     }
-    req.login(user, (err) => {
+    req.login(user, async (err) => {
       if (err) {
         return res.status(500).json({status: 500, message: 'authentication error'});
       }
@@ -59,10 +61,14 @@ router.post('/login', (req, res, next) => {
         user: {username, lastname, name, email, id}
       } = req;
       const returnUser = {username, lastname, name, email, id};
+      const leagueList = await League.find({
+        players: mongoose.Types.ObjectId(returnUser.id)
+      });
       const token = jwt.sign(returnUser, 'formula1');
       return res.json({
         token,
-        ...returnUser
+        ...returnUser,
+        leagueList
       });
     });
   })(req, res, next);
@@ -79,9 +85,18 @@ router.get('/logout', isLoggedIn(), (req, res, next) => {
 });
 
 //Profile
-router.get('/profile', isLoggedIn(), (req, res, next) => {
-  if (req.user) return res.json(req.user);
-  else return res.status(401).json({status: 'No user session present'});
+router.get('/profile', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+  if (req.user) {
+    const leagueList = await League.find({
+      players: mongoose.Types.ObjectId(req.user.id)
+    });
+    return res.json({
+      ...req.user,
+      leagueList
+    });
+  } else {
+    return res.status(401).json({status: 'No user session present'});
+  }
 });
 
 //Edit

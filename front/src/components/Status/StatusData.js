@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
 
-export default function Status({id, username, money, league}) {
+export default function Status({user, league}) {
   return (
-    <>
+    <div>
       <div>
-        <div>
-          <ul>
-            <li>{league}</li>
-            <li>{username}</li>
-            <li>{money} €</li>
-          </ul>
-        </div>
+        <ul>
+          <li>{league.name}</li>
+          <li>{user.name}</li>
+          <li>XXXXX €</li>
+        </ul>
       </div>
-    </>
+    </div>
   );
 }

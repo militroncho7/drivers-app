@@ -5,11 +5,11 @@ import {Redirect} from 'react-router-dom';
 //Components
 import RegisterView from 'components/screens/Register/Register';
 
-export default function Register() {
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isLoginSuccessfull, setIsLoginSuccessfull] = useState(false);
+  const [user, setUser] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -18,8 +18,8 @@ export default function Register() {
         username,
         password
       });
-      window.localStorage.setItem('USER', JSON.stringify(response.data));
-      setIsLoginSuccessfull(true);
+      window.localStorage.setItem('USER_API_TOKEN', JSON.stringify(response.data));
+      setUser(response.data);
     } catch (exception) {
       setError(exception.response.data.message);
     }
@@ -33,8 +33,12 @@ export default function Register() {
     setPassword(event.target.value);
   }
 
-  if (isLoginSuccessfull) {
-    return <Redirect to="/league" />;
+  if (user) {
+    if (user.leagueList && user.leagueList.length > 0) {
+      const [league] = user.leagueList;
+      return <Redirect to="/market" />;
+    }
+    return <Redirect to="/league/create" />;
   }
 
   return (

@@ -7,23 +7,6 @@ import {Link} from 'react-router-dom';
 import Logout from '../Logout/index';
 
 export default function Nav() {
-  const [error, setError] = useState('');
-  const [isLogoutSuccessfull, setIsLogoutSuccessfull] = useState(false);
-
-  async function handleLogout(event) {
-    event.preventDefault();
-    try {
-      const response = await axios.get('http://localhost:1234/auth/logout');
-      setIsLogoutSuccessfull(true);
-    } catch (exception) {
-      setError(exception.response.data);
-    }
-  }
-
-  if (isLogoutSuccessfull) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <header id="main-header">
       <div class="container">
@@ -62,7 +45,7 @@ export default function Nav() {
                 </Link>
               </li> */}
               <li>
-                <Logout type={handleLogout} />
+                <Logout />
               </li>
             </ul>
           </nav>

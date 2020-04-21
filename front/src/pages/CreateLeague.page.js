@@ -6,8 +6,8 @@ import {Redirect} from 'react-router-dom';
 import LeagueView from 'components/screens/Register/League';
 import getLoggedUser from 'utils/getLoggedUser';
 
-export default function League() {
-  const [newLeague, setNewleague] = useState('');
+export default function CreateLeague() {
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [isCreateLeague, setIsCreateLeague] = useState(false);
 
@@ -23,7 +23,7 @@ export default function League() {
       const response = await axios.post(
         'http://localhost:1234/league/create',
         {
-          newLeague
+          name
         },
         config
       );
@@ -33,8 +33,8 @@ export default function League() {
     }
   }
 
-  function handleChangeNewLeague(event) {
-    setNewleague(event.target.value);
+  function handleChangeName(event) {
+    setName(event.target.value);
   }
 
   if (isCreateLeague) {
@@ -44,9 +44,9 @@ export default function League() {
   return (
     <LeagueView
       onSubmit={handleSubmit}
-      onChangeName={handleChangeNewLeague}
+      onChangeName={handleChangeName}
       error={error}
-      newLeague={newLeague}
+      newLeague={name}
       value="Go!"
     />
   );
