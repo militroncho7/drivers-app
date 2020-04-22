@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Loading from 'components/Loading/index';
 
 //Components
+import Loading from 'components/Loading/index';
 import Nav from 'components/Nav/Nav';
 import Circuits from 'components/Circuits/index';
 import Footer from 'components/Footer/Footer';
+import Status from 'components/Status/index';
 
 export default function Market() {
   const [circuits, setCircuits] = useState([]);
@@ -18,9 +19,11 @@ export default function Market() {
   if (circuits.length === 0) {
     return <Loading />;
   }
+
   return (
     <>
       <Nav />
+      <Status />
 
       <div className="section-market">
         {circuits.map((pilot) => (

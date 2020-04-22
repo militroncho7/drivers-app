@@ -9,16 +9,18 @@ import Logout from '../Logout/index';
 export default function Nav() {
   return (
     <header id="main-header">
-      <div class="container">
+      <div className="container">
         <div id="logo">
-          <img
-            src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586884639/drivers/logo/logo_hrzntl_nympql.png"
-            className="image-nav"
-            alt="logo-drivers"
-          />
+          <Link to="/">
+            <img
+              src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586884639/drivers/logo/logo_hrzntl_nympql.png"
+              className="image-nav"
+              alt="logo-drivers"
+            />
+          </Link>
         </div>
         <div>
-          <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+          <input type="checkbox" id="nav-toggle" className="nav-toggle" />
           <nav id="menu">
             <ul>
               <li>
@@ -28,28 +30,20 @@ export default function Nav() {
                 <Link to="/team">Equipo</Link>
               </li>
               <li>
-                <Link to="#">Puntuación</Link>
+                <Link to="/points">Puntuación</Link>
               </li>
               <li>
                 <Link to="/circuits">Carreras</Link>
               </li>
               <li>
-                <Link to="#">Cuenta</Link>
+                <Link to="/profile">Cuenta</Link>
               </li>
-              {/* <li>
-                <Link to="#">
-                  <img
-                    src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1587405138/drivers/logo/User-Interface-Logout-icon_her3mt.png"
-                    width="30px"
-                  />
-                </Link>
-              </li> */}
               <li>
                 <Logout />
               </li>
             </ul>
           </nav>
-          <label for="nav-toggle" class="nav-toggle-label">
+          <label for="nav-toggle" className="nav-toggle-label">
             <span></span>
           </label>
         </div>

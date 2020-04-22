@@ -3,28 +3,30 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 
 //Components
-import SignupView from 'components/screens/Register/Signup';
+import Nav from 'components/Nav/Nav';
+import Status from 'components/Status/index';
+import EditProfile from 'components/Profile/index';
+import Footer from 'components/Footer/Footer';
+// import Loading from 'components/Loading/index';
 
-export default function Signup() {
+export default function Profile() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [isSignupSuccessfull, setIsLoginSuccessfull] = useState(false);
+  const [isEditSuccessfull, setIsEditSuccessfull] = useState(false);
 
-  async function handleSubmit(event) {
+  async function handleEdit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:1234/auth/signup', {
+      const response = await axios.post('http://localhost:1234/auth/edit', {
         username,
-        password,
         name,
         lastname,
         email
       });
-      setIsLoginSuccessfull(true);
+      setIsEditSuccessfull(true);
     } catch (exception) {
       setError(exception.response.data.message);
     }
@@ -32,10 +34,6 @@ export default function Signup() {
 
   function handleChangeUsername(event) {
     setUsername(event.target.value);
-  }
-
-  function handleChangePassword(event) {
-    setPassword(event.target.value);
   }
 
   function handleChangeName(event) {
@@ -50,26 +48,28 @@ export default function Signup() {
     setEmail(event.target.value);
   }
 
-  if (isSignupSuccessfull) {
-    return <Redirect to="/league/create" />;
+  if (isEditSuccessfull) {
+    return <Redirect to="/market" />;
   }
 
   return (
     <>
-      <SignupView
-        onSubmit={handleSubmit}
+      <Nav />
+      <Status />
+      <EditProfile
+        onSubmit={handleEdit}
         onChangeUsername={handleChangeUsername}
-        onChangePassword={handleChangePassword}
         onChangeName={handleChangeName}
         onChangeLastname={handleChangeLastname}
         onChangeEmail={handleChangeEmail}
         error={error}
         username={username}
-        password={password}
         name={name}
         lastname={lastname}
         email={email}
       />
+
+      <Footer className="fixed-footer" />
     </>
   );
 }

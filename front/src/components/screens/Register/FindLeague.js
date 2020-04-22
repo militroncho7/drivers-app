@@ -12,25 +12,25 @@ export default function League({name, onSubmit, onChangeName, error}) {
       <div className="login-box">
         <LogoMedium className="size-image" />
         <div>
-          <h3>¡Crea tu liga!</h3>
+          <h3>¡Busca tu liga!</h3>
           <form onSubmit={onSubmit}>
             {error.length > 0 && <Alert type="danger">Error: {error}</Alert>}
             <div className="user-box">
               <input type="text" onChange={onChangeName} required value={name} />
               <label>Nombre de la liga</label>
             </div>
-            <Link to="/league/find">
+            <Link to="/league/create">
               <span></span>
               <span></span>
               <span></span>
               <span></span>
-              Busca tu liga
+              ¡No tengo liga!
             </Link>
             <div className="container-center">
-              <Link type="text" className="button" to="/login">
+              <Link type="text" className="button" to="/league/create">
                 <b>Back!</b>
               </Link>
-              <Button type="submit" value="go!" whereTo="/league" className="button">
+              <Button type="submit" value="go!" className="button">
                 <b>GO!</b>
               </Button>
             </div>

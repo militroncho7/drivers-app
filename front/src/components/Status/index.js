@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import StatusData from 'components/Status/StatusData';
 import getLoggedUser from 'utils/getLoggedUser';
+import Loading from 'components/Loading/index';
+import './style.css';
 
 export default function Status() {
   const [user, setUser] = useState(null);
@@ -18,14 +20,11 @@ export default function Status() {
   }, []);
 
   if (!user) {
-    return <div>Status loading...</div>;
+    return <Loading />;
   }
 
   const [league] = user.leagueList;
+  const userData = user;
 
-  return (
-    <div>
-      <StatusData user={user} league={league} />
-    </div>
-  );
+  return <StatusData league={league} user={userData} />;
 }

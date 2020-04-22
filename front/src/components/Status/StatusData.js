@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
+import './style.css';
 
-export default function Status({user, league}) {
+export default function Status({league, user}) {
   return (
-    <div>
+    <div className="status-card">
       <div>
-        <ul>
-          <li>{league.name}</li>
-          <li>{user.name}</li>
-          <li>XXXXX €</li>
-        </ul>
+        <b>Campeonato: </b>
+        {league.name}
+      </div>
+      <div>
+        {user.name}: <b>{user.money} €</b>
       </div>
     </div>
   );

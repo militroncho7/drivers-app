@@ -6,7 +6,7 @@ import Status from 'components/Status/index';
 import Footer from 'components/Footer/Footer';
 import Loading from 'components/Loading/index';
 
-export default function Team() {
+export default function Points() {
   return (
     <>
       <Nav />

@@ -5,6 +5,7 @@ import Nav from 'components/Nav/Nav';
 import Status from 'components/Status/index';
 import Pilot from 'components/Pilot';
 import Footer from 'components/Footer/Footer';
+import Loading from 'components/Loading/index';
 
 export default function Market() {
   const [pilots, setPilots] = useState([]);
@@ -19,8 +20,9 @@ export default function Market() {
   }, []);
 
   if (pilots.length === 0) {
-    return <div>cargando...</div>;
+    return <Loading />;
   }
+
   return (
     <>
       <Nav />

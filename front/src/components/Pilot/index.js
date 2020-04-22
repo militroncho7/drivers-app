@@ -30,7 +30,7 @@ export default function Pilot({
             <div>
               <ul>
                 <li>
-                  <h3>
+                  <h3 className="line">
                     {givenName} {familyName}
                   </h3>
                 </li>

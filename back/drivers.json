@@ -102,7 +102,7 @@
       "nationality": "German",
       "initialValue": 25000000,
       "market": true,
-      "img": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586960240/drivers/pilotos/hulkenberg_cw1os1.jpg",
+      "img": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1587198413/drivers/pilotos/Hulkenberg_pg9nru.png",
       "car": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/renault_yle8id.png",
       "logo": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/renault-logo_wqlklq.png"
     },
@@ -117,7 +117,7 @@
       "nationality": "Polish",
       "initialValue": 5000000,
       "market": true,
-      "img": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959333/drivers/pilotos/kubica_gyv5ab.jpg",
+      "img": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1587198413/drivers/pilotos/kubica_pbxkbd.png",
       "car": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/williams_qjkau9.png",
       "logo": "https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586959420/drivers/cars/williams-logo_xiihmq.png"
     },
