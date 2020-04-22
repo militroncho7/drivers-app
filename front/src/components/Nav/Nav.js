@@ -43,7 +43,7 @@ export default function Nav() {
               </li>
             </ul>
           </nav>
-          <label for="nav-toggle" className="nav-toggle-label">
+          <label forhtml="nav-toggle" className="nav-toggle-label">
             <span></span>
           </label>
         </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const axios = require('axios');
 const passport = require('passport');
 const League = require('../models/League');
@@ -13,7 +14,7 @@ const fs = require('fs');
 // Create League
 router.post('/create', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
   const {name} = req.body;
-  const idUser = req.user.id;
+  const idUser = req.user._id;
 
   const newLeague = await League.create({
     name,
@@ -62,6 +63,33 @@ router.post('/delete', isLoggedIn(), async (req, res) => {
     });
   } catch (err) {
     return res.json({status: 400, message: 'No encontrado'});
+  }
+});
+
+router.get('/find', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+  if (req.user) {
+    const leagueList = await League.find({
+      name: new RegExp(req.query.name, 'i')
+    });
+    return res.json(leagueList);
+  } else {
+    return res.status(401).json({status: 'No user session present'});
+  }
+});
+
+router.post('/join', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
+  if (req.user) {
+    const league = await League.findOne({
+      _id: mongoose.Types.ObjectId(req.body.id)
+    });
+    if (!league) {
+      return res.status(404).json({status: 'That league does not exists'});
+    }
+    league.players = [...league.players, req.user._id];
+    league.save();
+    return res.json(league);
+  } else {
+    return res.status(401).json({status: 'No user session present'});
   }
 });
 

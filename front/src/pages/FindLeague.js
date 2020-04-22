@@ -3,13 +3,14 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom';
 
 //Components
-import FindLeagueView from 'components/screens/Register/FindLeague';
+import FindLeagueView from 'components/screens/FindLeague';
 import getLoggedUser from 'utils/getLoggedUser';
 
-export default function CreateLeague() {
+export default function FindLeague() {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
-  const [isCreateLeague, setIsCreateLeague] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [leagues, setLeagues] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -18,16 +19,15 @@ export default function CreateLeague() {
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`
+        },
+        params: {
+          name
         }
       };
-      const response = await axios.post(
-        'http://localhost:1234/league/create',
-        {
-          name
-        },
-        config
-      );
-      setIsCreateLeague(true);
+      setIsSearching(true);
+      const response = await axios.get(`http://localhost:1234/league/find`, config);
+      setLeagues(response.data);
+      setIsSearching(false);
     } catch (exception) {
       setError(exception.response.data.message);
     }
@@ -37,10 +37,6 @@ export default function CreateLeague() {
     setName(event.target.value);
   }
 
-  if (isCreateLeague) {
-    return <Redirect to="/market" />;
-  }
-
   return (
     <FindLeagueView
       onSubmit={handleSubmit}
@@ -48,6 +44,8 @@ export default function CreateLeague() {
       error={error}
       newLeague={name}
       value="Go!"
+      leagues={leagues}
+      isSearching={isSearching}
     />
   );
 }

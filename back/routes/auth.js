@@ -88,7 +88,7 @@ router.get('/logout', isLoggedIn(), (req, res, next) => {
 router.get('/profile', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
   if (req.user) {
     const leagueList = await League.find({
-      players: mongoose.Types.ObjectId(req.user.id)
+      players: mongoose.Types.ObjectId(req.user._id)
     });
     return res.json({
       ...req.user,

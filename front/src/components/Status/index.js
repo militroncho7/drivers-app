@@ -8,15 +8,18 @@ import './style.css';
 export default function Status() {
   const [user, setUser] = useState(null);
 
-  useEffect(async () => {
-    const user = getLoggedUser();
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      }
-    };
-    const response = await axios.get('http://localhost:1234/auth/profile', config);
-    setUser(response.data);
+  useEffect(() => {
+    async function fetchData() {
+      const user = getLoggedUser();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      };
+      const response = await axios.get('http://localhost:1234/auth/profile', config);
+      setUser(response.data);
+    }
+    fetchData();
   }, []);
 
   if (!user) {

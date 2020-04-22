@@ -11,12 +11,16 @@ export default function Market() {
   const [pilots, setPilots] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:1234/drivers/list`)
-      .then((res) => res.json())
-      .then((pilots) => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`http://localhost:1234/drivers/list`);
+        const pilots = await response.json();
         setPilots(pilots.Drivers);
-        // console.log(pilots.Drivers);
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
   }, []);
 
   if (pilots.length === 0) {
@@ -30,7 +34,7 @@ export default function Market() {
 
       <div className="section-market">
         {pilots.map((pilot) => (
-          <Pilot {...pilot} key={`pilot-${pilot.id}`} />
+          <Pilot {...pilot} key={`pilot--${pilot.driverId}`} />
         ))}
       </div>
 
