@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
-import Button from 'components/ButtonLink/Button';
 import getLoggedUser from 'utils/getLoggedUser';
+import Loading from 'components/Loading/index';
 
 export default function LeaguesList({leagues}) {
   const [isJoining, setIsJoining] = useState(false);
@@ -22,7 +22,7 @@ export default function LeaguesList({leagues}) {
       );
       setJoinSuccess(true);
     } catch (exception) {
-      console.log(exception);
+      // console.log(exception);
     }
   }
 
@@ -32,21 +32,22 @@ export default function LeaguesList({leagues}) {
 
   return (
     <>
-      <div>
+      <div className="find-league">
         {leagues.map((league) => (
-          <div style={{color: 'white'}} key={`league--${league._id}`}>
+          <div key={`league--${league._id}`}>
             {league.name}
             <button
+              className="mini-button"
               onClick={() => {
                 handleJoinToLeague(league._id);
               }}
             >
-              Unirme
+              Unéte
             </button>
           </div>
         ))}
       </div>
-      {isJoining && <div style={{color: 'white'}}>Uniéndote a la liga...</div>}
+      {isJoining && <Loading />}
     </>
   );
 }

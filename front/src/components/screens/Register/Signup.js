@@ -49,10 +49,10 @@ export default function Signup({
           </div>
           <div className="container-center">
             <Link type="text" className="button" to="/login">
-              <b>Back!</b>
+              Back!
             </Link>
             <Button type="submit" className="button">
-              <b>GO!</b>
+              GO!
             </Button>
           </div>
         </form>

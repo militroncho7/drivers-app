@@ -28,10 +28,10 @@ export default function League({name, onSubmit, onChangeName, error}) {
             </Link>
             <div className="container-center">
               <Link type="text" className="button" to="/login">
-                <b>Back!</b>
+                Back!
               </Link>
               <Button type="submit" value="go!" whereTo="/league" className="button">
-                <b>GO!</b>
+                GO!
               </Button>
             </div>
           </form>

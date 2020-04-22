@@ -21,23 +21,21 @@ export default function League({name, onSubmit, onChangeName, error, isSearching
               <label>Nombre de la liga</label>
             </div>
             <div className="container-center">
-              <Button type="submit" className="button">
-                <b>Buscar!</b>
+              <Link type="text" className="button" to="/login">
+                Back!
+              </Link>
+              <Button type="submit" className="find-button">
+                Buscar
               </Button>
             </div>
           </form>
-          <div>
+          <div className="container-center">
             {isSearching && <div style={{color: 'white'}}>Buscando ligas</div>}
             {leagues && leagues.length > 0 && <LeaguesList leagues={leagues} />}
-            {leagues && leagues.length === 0 && <div>No se han encontrado ligas</div>}
+            {leagues && leagues.length === 0 && (
+              <div className="alert_danger">No se han encontrado ligas</div>
+            )}
           </div>
-          <Link to="/league/create">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Crea una liga
-          </Link>
         </div>
       </div>
     </>

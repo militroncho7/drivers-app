@@ -38,7 +38,7 @@ export default function Register({
           </Link>
           <div className="container-center">
             <Button type="submit" className="button">
-              <b>GO!</b>
+              GO!
             </Button>
           </div>
         </form>
