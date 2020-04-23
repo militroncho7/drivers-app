@@ -99,9 +99,9 @@ router.post('/alls', async (req, res) => {
 //   }
 // });
 
-router.get('/list', async (req, res) => {
-  res.json(drivers);
-});
+// router.get('/list', async (req, res) => {
+//   res.json(drivers);
+// });
 
 router.post('/fichar/:id', async (req, res) => {
   const id = req.params.id;

@@ -7,6 +7,7 @@ const League = require('../models/League');
 const Drivers = require('../models/Drivers');
 const User = require('../models/User');
 const _ = require('lodash');
+const drivers = require('../drivers.json');
 const {isLoggedIn, isLoggedOut} = require('../lib/isLoggedMiddleware');
 const http = require('follow-redirects').http;
 const fs = require('fs');
@@ -15,18 +16,31 @@ const fs = require('fs');
 router.post('/create', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
   const {name} = req.body;
   const idUser = req.user._id;
+  try {
+    await Drivers.insertMany(drivers);
+    const driversFromDatabase = await Drivers.find({});
+    const newLeague = await League.create({
+      name,
+      playerAdmin: idUser,
+      players: idUser,
+      drivers: driversFromDatabase
+    });
 
-  const newLeague = await League.create({
-    name,
-    playerAdmin: idUser,
-    players: idUser
-  });
-
-  return res.json({
-    league: _.pick(newLeague, ['_id', 'name', 'players', 'playerAdmin', 'createdAt', 'updatedAt']),
-    status: 200,
-    message: 'Liga creada!'
-  });
+    return res.json({
+      league: _.pick(newLeague, [
+        '_id',
+        'name',
+        'players',
+        'playerAdmin',
+        'createdAt',
+        'updatedAt'
+      ]),
+      status: 200,
+      message: 'Liga creada!'
+    });
+  } catch (exception) {
+    return res.json({status: 400, message: 'Fallo al recibir los datos'});
+  }
 });
 
 //Get all leagues
@@ -91,6 +105,18 @@ router.post('/join', passport.authenticate('jwt', {session: false}), async (req,
   } else {
     return res.status(401).json({status: 'No user session present'});
   }
+});
+
+router.get('/:id/drivers', async (req, res) => {
+  const id = req.params.id;
+  // drivers.Drivers.find((drivers) => console.log(drivers.driverId == id));
+  const league = await League.findOne({
+    _id: mongoose.Types.ObjectId(id)
+  }).populate('drivers');
+  if (!league) {
+    return res.status(404).json({status: 'That league does not exists'});
+  }
+  return res.json(league.drivers);
 });
 
 module.exports = router;

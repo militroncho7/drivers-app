@@ -5,6 +5,7 @@ import {Redirect} from 'react-router-dom';
 //Components
 import LeagueView from 'components/screens/Register/League';
 import getLoggedUser from 'utils/getLoggedUser';
+import updateLoggedUser from 'utils/updateLoggedUser';
 
 export default function CreateLeague() {
   const [name, setName] = useState('');
@@ -28,6 +29,10 @@ export default function CreateLeague() {
         config
       );
       setIsCreateLeague(true);
+      updateLoggedUser({
+        ...user,
+        leagueList: [...(user.leagueList ? user.leagueList : []), response.data.league]
+      });
     } catch (exception) {
       setError(exception.response.data.message);
     }

@@ -7,7 +7,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'formula1';
 passport.use(
   new JwtStrategy(opts, function (jwtPayload, done) {
-    User.findById(jwtPayload.id, function (err, user) {
+    User.findById(jwtPayload._id, function (err, user) {
       if (err) {
         return done(err, false);
       }

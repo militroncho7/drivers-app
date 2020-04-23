@@ -1,7 +1,29 @@
 import React, {useState} from 'react';
+import getLoggedUser from 'utils/getLoggedUser';
 
 //Components
 import Button from 'components/ButtonLink/Button';
+
+const styles = {
+  modal: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 1000,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0, 0, 0, 0.7)'
+  },
+  modalContent: {
+    background: 'white',
+    width: '400px',
+    height: 'auto',
+    padding: '25px'
+  }
+};
 
 export default function Pilot({
   driverId,
@@ -14,13 +36,32 @@ export default function Pilot({
   car,
   market
 }) {
-  // const [fichar, setFichar] = useState('');
-  // function handleOnClick() {
-  //   console.log(fichar);
-  //   setFichar(!market);
-  // }
+  const [isConfirming, setIsConfirming] = useState(false);
+  function handleSignUp() {
+    setIsConfirming(true);
+  }
+
+  function cancelSignUp() {
+    setIsConfirming(false);
+  }
+
+  function confirmSignUp() {
+    // @todo
+  }
+
+  const user = getLoggedUser();
+  const canSignUp = initialValue < user.money;
   return (
     <>
+      {isConfirming && (
+        <div style={styles.modal}>
+          <div style={styles.modalContent}>
+            <p>¿Confirmas el fichaje?</p>
+            <button onClick={cancelSignUp}>No</button>
+            <button onClick={confirmSignUp}>Sí</button>
+          </div>
+        </div>
+      )}
       <div className="card-market">
         <div className="card-pilot">
           <div className="pilot-image">
@@ -50,11 +91,13 @@ export default function Pilot({
             </div>
           </div>
         </div>
-        <div>
-          <Button className="button">
-            <b>FICHAR</b>
-          </Button>
-        </div>
+        {canSignUp && (
+          <div>
+            <button className="button" onClick={handleSignUp}>
+              <b>FICHAR</b>
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

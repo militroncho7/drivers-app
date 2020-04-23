@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 //Components
 import Nav from 'components/Nav/Nav';
@@ -6,19 +7,26 @@ import Status from 'components/Status/index';
 import Pilot from 'components/Pilot';
 import Footer from 'components/Footer/Footer';
 import Loading from 'components/Loading/index';
+import getLoggedUser from 'utils/getLoggedUser';
 
 export default function Market() {
   const [pilots, setPilots] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const response = await fetch(`http://localhost:1234/drivers/list`);
-        const pilots = await response.json();
-        setPilots(pilots.Drivers);
-      } catch (error) {
-        console.log(error);
-      }
+      const user = getLoggedUser();
+      console.log(user);
+      const [league] = user.leagueList;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      };
+      const response = await axios.get(
+        `http://localhost:1234/league/${league._id}/drivers`,
+        config
+      );
+      setPilots(response.data);
     }
     fetchData();
   }, []);

@@ -57,12 +57,9 @@ router.post('/login', (req, res, next) => {
       if (err) {
         return res.status(500).json({status: 500, message: 'authentication error'});
       }
-      const {
-        user: {username, lastname, name, email, id}
-      } = req;
-      const returnUser = {username, lastname, name, email, id};
+      const returnUser = req.user.toObject();
       const leagueList = await League.find({
-        players: mongoose.Types.ObjectId(returnUser.id)
+        players: mongoose.Types.ObjectId(returnUser._id)
       });
       const token = jwt.sign(returnUser, 'formula1');
       return res.json({

@@ -1,12 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const leagueSchema = new Schema(
   {
     name: String,
-    players: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    drivers: [{ type: Schema.Types.ObjectId, ref: "Drivers" }],
-    playerAdmin: { type: Schema.Types.ObjectId, ref: "User" }
+    players: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    drivers: [{type: Schema.Types.ObjectId, ref: 'Drivers'}],
+    unavailableDrivers: [{type: Schema.Types.ObjectId, ref: 'Drivers'}],
+    playerAdmin: {type: Schema.Types.ObjectId, ref: 'User'}
     //Meter los drivers de la base de datos
   },
   {
@@ -14,6 +15,6 @@ const leagueSchema = new Schema(
   }
 );
 
-const League = mongoose.model("League", leagueSchema);
+const League = mongoose.model('League', leagueSchema);
 
 module.exports = League;
