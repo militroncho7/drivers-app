@@ -1,6 +1,4 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import {Redirect} from 'react-router-dom';
+import React from 'react';
 import {Link} from 'react-router-dom';
 
 //Components

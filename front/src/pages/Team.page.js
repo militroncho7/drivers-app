@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+// import React, {useEffect, useState} from 'react';
 
-//Components
-import Nav from 'components/Nav/Nav';
-import Status from 'components/Status/index';
-import Footer from 'components/Footer/Footer';
-import Loading from 'components/Loading/index';
+// //Components
+// import Nav from 'components/Nav/Nav';
+// import Status from 'components/Status/index';
+// // import Footer from 'components/Footer/Footer';
+// // import Loading from 'components/Loading/index';
 
-export default function Team() {
-  return (
-    <>
-      <Nav />
-      <Status />
+// export default function Team() {
+//   return (
+//     <>
+//       <Nav />
+//       <Status />
 
-      {/* <Footer /> */}
-    </>
-  );
-}
+//       {/* <Footer /> */}
+//     </>
+//   );
+// }
