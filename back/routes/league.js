@@ -114,12 +114,10 @@ router.post('/join', passport.authenticate('jwt', {session: false}), async (req,
 
 router.get('/:id/drivers', async (req, res) => {
   const id = req.params.id;
-  console.log('id=', id);
   // drivers.Drivers.find((drivers) => console.log(drivers.driverId == id));
   const league = await League.findOne({
     _id: mongoose.Types.ObjectId(id)
   }).populate('drivers');
-  console.log('league=', league);
   if (!league) {
     return res.status(404).json({status: 'That league does not exists'});
   }

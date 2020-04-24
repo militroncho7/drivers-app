@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const driverSchema = new Schema(
@@ -12,16 +12,16 @@ const driverSchema = new Schema(
     dateOfBirth: String,
     nationality: String,
     initialValue: Number,
-    market: { type: Boolean, default: true },
+    market: {type: Boolean, default: true},
     img: String,
     car: String,
-    logo: String,
+    logo: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
-const Drivers = mongoose.model("Drivers", driverSchema);
+const Drivers = mongoose.model('Drivers', driverSchema);
 
 module.exports = Drivers;

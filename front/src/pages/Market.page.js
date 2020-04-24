@@ -25,7 +25,6 @@ export default function Market() {
         config
       );
       setPilots(response.data);
-      console.log(response.data);
     }
     fetchData();
   }, []);
