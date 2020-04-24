@@ -16,6 +16,6 @@ passport.use(
       } else {
         return done(null, false);
       }
-    });
+    }).populate('league');
   })
 );

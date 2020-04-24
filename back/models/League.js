@@ -8,7 +8,6 @@ const leagueSchema = new Schema(
     drivers: [{type: Schema.Types.ObjectId, ref: 'Drivers'}],
     unavailableDrivers: [{type: Schema.Types.ObjectId, ref: 'Drivers'}],
     playerAdmin: {type: Schema.Types.ObjectId, ref: 'User'}
-    //Meter los drivers de la base de datos
   },
   {
     timestamps: true

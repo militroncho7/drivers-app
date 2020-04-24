@@ -1,16 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import StatusData from 'components/Status/StatusData';
-import getLoggedUser from 'utils/getLoggedUser';
+import useUserContext from 'hooks/useUserContext';
 import Loading from 'components/Loading/index';
 import './style.css';
 
 export default function Status() {
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useUserContext();
 
   useEffect(() => {
     async function fetchData() {
-      const user = getLoggedUser();
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`
@@ -26,8 +25,5 @@ export default function Status() {
     return <Loading />;
   }
 
-  const [league] = user.leagueList;
-  const userData = user;
-
-  return <StatusData league={league} user={userData} />;
+  return <StatusData league={user.league} user={user} />;
 }
