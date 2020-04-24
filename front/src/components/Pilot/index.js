@@ -3,6 +3,7 @@ import getLoggedUser from 'utils/getLoggedUser';
 
 //Components
 import Button from 'components/ButtonLink/Button';
+import axios from 'axios';
 
 const styles = {
   modal: {
@@ -45,8 +46,17 @@ export default function Pilot({
     setIsConfirming(false);
   }
 
-  function confirmSignUp() {
-    // @todo
+  async function confirmSignUp(driverId) {
+    try {
+      const user = getLoggedUser();
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      };
+      const response = await axios.get('http:', {id: driverId}, config);
+    } catch (exception) {}
+    // console.log(exception)
   }
 
   const user = getLoggedUser();
