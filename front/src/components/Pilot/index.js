@@ -5,7 +5,6 @@ import updateLoggedUser from 'utils/updateLoggedUser';
 
 //Components
 import Button from 'components/ButtonLink/Button';
-import axios from 'axios';
 
 const styles = {
   modal: {
@@ -52,24 +51,13 @@ export default function Pilot({
     setIsConfirming(false);
   }
 
-<<<<<<< HEAD
-  async function confirmSignUp(driverId) {
-    try {
-      const user = getLoggedUser();
-=======
   async function confirmSignUp() {
     try {
->>>>>>> feature/gerardo
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`
         }
       };
-<<<<<<< HEAD
-      const response = await axios.get('http:', {id: driverId}, config);
-    } catch (exception) {}
-    // console.log(exception)
-=======
       setIsSigninUp(true);
       const response = await axios.post(
         `http://localhost:1234/league/${user.league._id}/sign-up/${_id}`,
@@ -90,7 +78,6 @@ export default function Pilot({
       setError(exception.response.data.message);
       setIsSigninUp(false);
     }
->>>>>>> feature/gerardo
   }
 
   const canSignUp = initialValue <= user.money;
