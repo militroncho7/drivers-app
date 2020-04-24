@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import useUserContext from 'hooks/useUserContext';
 
 //Components
 import RegisterView from 'components/screens/Register/Register';
@@ -9,7 +10,7 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useUserContext();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -34,8 +35,7 @@ export default function Login() {
   }
 
   if (user) {
-    if (user.leagueList && user.leagueList.length > 0) {
-      const [league] = user.leagueList;
+    if (user.league) {
       return <Redirect to="/market" />;
     }
     return <Redirect to="/league/create" />;

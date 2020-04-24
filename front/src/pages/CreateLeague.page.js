@@ -31,7 +31,7 @@ export default function CreateLeague() {
       setIsCreateLeague(true);
       updateLoggedUser({
         ...user,
-        leagueList: [...(user.leagueList ? user.leagueList : []), response.data.league]
+        league: response.data.league
       });
     } catch (exception) {
       setError(exception.response.data.message);

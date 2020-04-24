@@ -17,14 +17,19 @@ router.post('/create', passport.authenticate('jwt', {session: false}), async (re
   const {name} = req.body;
   const idUser = req.user._id;
   try {
-    await Drivers.insertMany(drivers);
     const driversFromDatabase = await Drivers.find({});
     const newLeague = await League.create({
       name,
       playerAdmin: idUser,
-      players: idUser,
+      players: [idUser],
       drivers: driversFromDatabase
     });
+    await User.findByIdAndUpdate(
+      {_id: idUser},
+      {
+        league: newLeague
+      }
+    );
 
     return res.json({
       league: _.pick(newLeague, [
@@ -118,5 +123,54 @@ router.get('/:id/drivers', async (req, res) => {
   }
   return res.json(league.drivers);
 });
+
+router.post(
+  '/:id/sign-up/:driverId',
+  passport.authenticate('jwt', {session: false}),
+  async (req, res) => {
+    const leagueId = req.params.id;
+    const driverId = req.params.driverId;
+
+    // check that the league exists
+    const league = await League.findOne({
+      _id: mongoose.Types.ObjectId(leagueId)
+    }).populate('unavailableDrivers');
+    if (!league) {
+      return res.status(404).json({message: 'That league does not exists'});
+    }
+
+    // check that the driver exists
+    const driver = await Drivers.findOne({
+      _id: mongoose.Types.ObjectId(driverId)
+    });
+    if (!driver) {
+      return res.status(404).json({message: 'That driver does not exists'});
+    }
+
+    // check if the driver is available
+    if (
+      league.unavailableDrivers.filter(
+        (unavailableDriver) => unavailableDriver._id.toString() === driverId
+      ).length > 0
+    ) {
+      return res.status(400).json({message: 'That driver is not available'});
+    }
+    const user = req.user;
+    // check money is enough
+    if (driver.initialValue > user.money) {
+      return res.status(400).json({message: 'That money is not enough'});
+    }
+
+    league.unavailableDrivers = [...league.unavailableDrivers, driverId];
+    league.save();
+
+    const userFromMongo = await User.findById({_id: user._id});
+    userFromMongo.drivers = [...user.drivers, driverId];
+    userFromMongo.money -= driver.initialValue;
+    userFromMongo.save();
+
+    return res.json(userFromMongo.toObject());
+  }
+);
 
 module.exports = router;

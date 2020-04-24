@@ -14,10 +14,17 @@ import TeamPage from 'pages/Team.page';
 import CircuitsPage from 'pages/Circuits.page';
 import PointsPage from 'pages/Points.page';
 import ProfilePage from 'pages/Profile.page';
-
 import PrivateRoute from 'components/Router/PrivateRoute';
 
+import isLoggedIn from 'utils/isLoggedIn';
+import getLoggedUser from 'utils/getLoggedUser';
+import useUserContext from 'hooks/useUserContext';
+
 const App = () => {
+  const {user, setUser} = useUserContext();
+  if (isLoggedIn() && !user) {
+    setUser(getLoggedUser());
+  }
   return (
     <Router>
       <Switch>

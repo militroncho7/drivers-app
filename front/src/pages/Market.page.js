@@ -15,15 +15,13 @@ export default function Market() {
   useEffect(() => {
     async function fetchData() {
       const user = getLoggedUser();
-      console.log(user);
-      const [league] = user.leagueList;
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`
         }
       };
       const response = await axios.get(
-        `http://localhost:1234/league/${league._id}/drivers`,
+        `http://localhost:1234/league/${user.league}/drivers`,
         config
       );
       setPilots(response.data);

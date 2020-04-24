@@ -16,7 +16,6 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', async (req, res, next) => {
   const {username, password, name, lastname, email} = req.body;
-  console.log(username, password, name, lastname, email);
   try {
     if (!username || !password || !name || !lastname || !email) {
       res.json('Please, complete Username, Password or Email');
@@ -58,14 +57,10 @@ router.post('/login', (req, res, next) => {
         return res.status(500).json({status: 500, message: 'authentication error'});
       }
       const returnUser = req.user.toObject();
-      const leagueList = await League.find({
-        players: mongoose.Types.ObjectId(returnUser._id)
-      });
       const token = jwt.sign(returnUser, 'formula1');
       return res.json({
         token,
-        ...returnUser,
-        leagueList
+        ...returnUser
       });
     });
   })(req, res, next);
@@ -84,12 +79,8 @@ router.get('/logout', isLoggedIn(), (req, res, next) => {
 //Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), async (req, res, next) => {
   if (req.user) {
-    const leagueList = await League.find({
-      players: mongoose.Types.ObjectId(req.user._id)
-    });
     return res.json({
-      ...req.user,
-      leagueList
+      ...req.user
     });
   } else {
     return res.status(401).json({status: 'No user session present'});

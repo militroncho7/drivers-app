@@ -12,36 +12,34 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      required: "Name is required"
+      required: 'Name is required'
     },
     password: {
-      type: String,
+      type: String
       // required: [true, 'Password is required'],
       // match: [PASSWORD_PATTERN, 'Invalid password pattern']
     },
     name: {
       type: String,
-      required: "Name is required"
+      required: 'Name is required'
     },
     lastname: {
       type: String,
-      required: "Name is required"
+      required: 'Name is required'
     },
     email: {
       type: String,
       trim: true,
-      match: [
-        EMAIL_PATTERN,
-        'Please fill a valid email address',
-      ],
+      match: [EMAIL_PATTERN, 'Please fill a valid email address'],
       sparse: true,
       unique: false,
       default: null,
       lowercase: true
     },
-    points: { type: Number, default: 0 },
-    drivers: { type: Schema.Types.ObjectId, ref: "Drivers" },
-    money: { type: Number, default: 60000000 }
+    points: {type: Number, default: 0},
+    drivers: [{type: Schema.Types.ObjectId, ref: 'Drivers'}],
+    money: {type: Number, default: 60000000},
+    league: {type: Schema.Types.ObjectId, ref: 'League'}
   },
   {
     timestamps: true,
@@ -54,15 +52,15 @@ const userSchema = new mongoose.Schema(
         delete ret.updatedAt;
         delete ret.__v;
         return ret;
-      },
-    },
-  },
+      }
+    }
+  }
 );
 
-userSchema.pre("save", function (next) {
+userSchema.pre('save', function (next) {
   const user = this;
 
-  if (!user.isModified("password")) {
+  if (!user.isModified('password')) {
     return next();
   }
 

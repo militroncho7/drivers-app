@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import getLoggedUser from 'utils/getLoggedUser';
+import axios from 'axios';
+import useUserContext from 'hooks/useUserContext';
+import updateLoggedUser from 'utils/updateLoggedUser';
 
 //Components
 import Button from 'components/ButtonLink/Button';
@@ -26,6 +28,7 @@ const styles = {
 };
 
 export default function Pilot({
+  _id,
   driverId,
   givenName,
   familyName,
@@ -37,6 +40,9 @@ export default function Pilot({
   market
 }) {
   const [isConfirming, setIsConfirming] = useState(false);
+  const [isSigninUp, setIsSigninUp] = useState(false);
+  const [error, setError] = useState(null);
+  const {user, setUser} = useUserContext();
   function handleSignUp() {
     setIsConfirming(true);
   }
@@ -45,12 +51,36 @@ export default function Pilot({
     setIsConfirming(false);
   }
 
-  function confirmSignUp() {
-    // @todo
+  async function confirmSignUp() {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      };
+      setIsSigninUp(true);
+      const response = await axios.post(
+        `http://localhost:1234/league/${user.league._id}/sign-up/${_id}`,
+        null,
+        config
+      );
+      setUser(response.data);
+      setIsSigninUp(false);
+      updateLoggedUser({
+        ...user,
+        drivers: response.data.drivers
+      });
+      // setUser({
+      //   ...user,
+      //   money: 10
+      // });
+    } catch (exception) {
+      setError(exception.response.data.message);
+      setIsSigninUp(false);
+    }
   }
 
-  const user = getLoggedUser();
-  const canSignUp = initialValue < user.money;
+  const canSignUp = initialValue <= user.money;
   return (
     <>
       {isConfirming && (
@@ -59,6 +89,8 @@ export default function Pilot({
             <p>¿Confirmas el fichaje?</p>
             <button onClick={cancelSignUp}>No</button>
             <button onClick={confirmSignUp}>Sí</button>
+            {isSigninUp && <div>Fichando...</div>}
+            {error && <div>{error}</div>}
           </div>
         </div>
       )}
