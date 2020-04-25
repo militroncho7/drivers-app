@@ -20,16 +20,16 @@ export default function Market() {
           Authorization: `Bearer ${user.token}`
         }
       };
-      const response = await axios.get(
-        `http://localhost:1234/league/${user.league}/drivers`,
-        config
-      );
-      setPilots(response.data);
+      const getDrivers = async () => {
+        return await axios.get(`http://localhost:1234/league/${user.league._id}/drivers`, config);
+      };
+      await getDrivers().then((response) => setPilots(response.data));
     }
     fetchData();
   }, []);
 
-  if (pilots.length === 0) {
+  console.log('entra ', pilots);
+  if (pilots.length == 0) {
     return <Loading />;
   }
 

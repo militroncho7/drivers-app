@@ -51,34 +51,46 @@ export default function Pilot({
     setIsConfirming(false);
   }
 
-  async function confirmSignUp() {
-    try {
+  const confirmSignUp = async (e, value) => {
+    e.preventDefault();
+
+    const response = async () => {
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`
         }
       };
-      setIsSigninUp(true);
-      const response = await axios.post(
-        `http://localhost:1234/league/${user.league._id}/sign-up/${_id}`,
-        null,
-        config
-      );
-      setUser(response.data);
-      setIsSigninUp(false);
-      updateLoggedUser({
-        ...user,
-        drivers: response.data.drivers
-      });
-      // setUser({
-      //   ...user,
-      //   money: 10
-      // });
-    } catch (exception) {
-      setError(exception.response.data.message);
-      setIsSigninUp(false);
-    }
-  }
+      console.log(user.league._id, _id);
+      return await axios.get(`http://localhost:1234/league/${user.league._id}/sign-up/${_id}`);
+    };
+    console.log('1');
+    await response().then((response) => console.log('esto es response', response));
+    console.log('2');
+
+    setIsSigninUp(false);
+    // try {
+    //   const config = {
+    //     headers: {
+    //       Authorization: `Bearer ${user.token}`
+    //     }
+    //   };
+    //   // setIsSigninUp(true);
+
+    //   // setUser(response.data);
+    //   setIsSigninUp(false);
+    //   // updateLoggedUser({
+    //   //   ...user,
+    //   //   drivers: response.data.drivers
+    //   // });
+    //   // setUser({
+    //   //   ...user,
+    //   //   money: 10
+    //   // });
+    // } catch (exception) {
+    //   setError(exception.response.data.message);
+    //   setIsSigninUp(false);
+    // }
+  };
 
   const canSignUp = initialValue <= user.money;
   return (
@@ -88,7 +100,9 @@ export default function Pilot({
           <div style={styles.modalContent}>
             <p>¿Confirmas el fichaje?</p>
             <button onClick={cancelSignUp}>No</button>
-            <button onClick={confirmSignUp}>Sí</button>
+            <button onClick={(e) => confirmSignUp(e, e.target.value)} value={_id}>
+              Sí
+            </button>
             {isSigninUp && <div>Fichando...</div>}
             {error && <div>{error}</div>}
           </div>

@@ -124,12 +124,15 @@ router.get('/:id/drivers', async (req, res) => {
   return res.json(league.drivers);
 });
 
-router.post(
+router.get(
   '/:id/sign-up/:driverId',
-  passport.authenticate('jwt', {session: false}),
+  // passport.authenticate('jwt', {session: false}),
   async (req, res) => {
     const leagueId = req.params.id;
     const driverId = req.params.driverId;
+
+    console.log('liga', leagueId);
+    console.log('driver', driverId);
 
     // check that the league exists
     const league = await League.findOne({
@@ -138,6 +141,7 @@ router.post(
     if (!league) {
       return res.status(404).json({message: 'That league does not exists'});
     }
+    console.log('Esto es liga', league);
 
     // check that the driver exists
     const driver = await Drivers.findOne({
@@ -146,18 +150,20 @@ router.post(
     if (!driver) {
       return res.status(404).json({message: 'That driver does not exists'});
     }
-
+    console.log('Esto es drivers', drivers);
     // check if the driver is available
     if (
       league.unavailableDrivers.filter(
         (unavailableDriver) => unavailableDriver._id.toString() === driverId
       ).length > 0
     ) {
+      console.log('entro!');
       return res.status(400).json({message: 'That driver is not available'});
     }
+    console.log('dinero', req.user);
     const user = req.user;
     // check money is enough
-    if (driver.initialValue > user.money) {
+    if (driver.initialValue >= user.money) {
       return res.status(400).json({message: 'That money is not enough'});
     }
 
