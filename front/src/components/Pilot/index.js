@@ -68,28 +68,6 @@ export default function Pilot({
     console.log('2');
 
     setIsSigninUp(false);
-    // try {
-    //   const config = {
-    //     headers: {
-    //       Authorization: `Bearer ${user.token}`
-    //     }
-    //   };
-    //   // setIsSigninUp(true);
-
-    //   // setUser(response.data);
-    //   setIsSigninUp(false);
-    //   // updateLoggedUser({
-    //   //   ...user,
-    //   //   drivers: response.data.drivers
-    //   // });
-    //   // setUser({
-    //   //   ...user,
-    //   //   money: 10
-    //   // });
-    // } catch (exception) {
-    //   setError(exception.response.data.message);
-    //   setIsSigninUp(false);
-    // }
   };
 
   const canSignUp = initialValue <= user.money;
