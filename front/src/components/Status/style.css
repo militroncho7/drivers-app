@@ -1,0 +1,18 @@
+.status-card {
+  background: #cd2813;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  margin-top: 128px;
+  width: 100%;
+  z-index: 998;
+  padding: 5px 0;
+  color: #000;
+}
+@media (max-width: 799px) {
+  .status-card {
+    margin-top: 80px;
+    flex-direction: column;
+  }
+}
