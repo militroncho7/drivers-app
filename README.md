@@ -1,4 +1,4 @@
- <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586510350/drivers/logo/logo-drivers-degradade_mmpxfr.png" width="130">
+ <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1586510350/drivers/logo/logo-drivers-degradade_mmpxfr.png" width="300">
 
 ### Descripción
 
@@ -6,7 +6,7 @@
 
 Descubre el **juego** donde cada jugador se convierte en gestor de su propio equipo de **fórmula 1**, y según las actuaciones de los pilotos en la realidad, los usuarios recibirán una **puntuación**, con la que competirán contra el resto de usuarios.
 
-<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009497/drivers/Drivers-brand_khokdh.png" width="130">
+<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009497/drivers/Drivers-brand_khokdh.png" width="300">
 
 ### Guía de usuario
 
@@ -17,7 +17,7 @@ Existe un perfil:
 - **Usuario no registrado**: Pueden registrarse, crear ligas, buscar competiciones de sus amigos u otros usuarios para poder competir entre los distintos jugadores.
   En un futuro se trabajará en un perfil de Usuario Administrador que tenga la capacidad de control sobre el resto de usuarios con otro rol.
 
-  <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009517/drivers/brand1_newqzt.jpg" width="100%">
+  <img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009517/drivers/brand1_newqzt.jpg" width="130">
 
 ### Guía de instalación
 
@@ -27,7 +27,7 @@ Se debe diferenciar ente la parte del client o front realizada en REACT y la par
 
 FLUJO DE LA APP
 
-<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009606/drivers/unnamed_oidrl4.png" width="100%">
+<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009606/drivers/unnamed_oidrl4.png" width="300">
 
 #### API
 
@@ -86,7 +86,7 @@ serve: "^11.3.0",
 styled-components: "^5.0.1",
 Además encontramos una carpeta public con las distintas imágenes y el reset.css
 
-<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009497/drivers/brand3_fwphnr.png" width="100%">
+<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009497/drivers/brand3_fwphnr.png" width="300">
 
 ### Cómo contribuir
 
@@ -105,7 +105,7 @@ Gráficas y medición en control Admin: Creación de distintas gráficas para el
 Password: Realizar la doble verificiación en el registro y la posibilidad de cambiarla.
 Uusuarios: podrán ponerse en contacto a través de mensajes, que les facilitará la realización de la petición en caso de haber algún problema.
 
-<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009518/drivers/brand2_fp9kae.jpg" width="100%">
+<img src="https://res.cloudinary.com/dhd9jgrw3/image/upload/v1590009518/drivers/brand2_fp9kae.jpg" width="300">
 
 ### Código de conducta
 
